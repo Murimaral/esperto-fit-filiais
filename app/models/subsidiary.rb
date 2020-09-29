@@ -1,5 +1,7 @@
 class Subsidiary < ApplicationRecord
   validates :name, :address, :cnpj, presence: true
+  validates :cnpj, :name, uniqueness: true
+
   validate :cnpj_must_be_valid
 
   before_create :generate_token
