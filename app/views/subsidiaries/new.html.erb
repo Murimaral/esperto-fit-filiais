@@ -1,0 +1,16 @@
+<h1>Nova Filial</h1>
+
+<% @subsidiary.errors.full_messages.each do |error| %>
+<%= error %>
+<% end %>
+
+
+<%= form_with model: @subsidiary, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :cnpj %>
+  <%= f.text_field :cnpj %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.submit 'Enviar' %>
+<% end %>
