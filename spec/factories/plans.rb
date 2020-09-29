@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :subsidiary do
+  factory :plan do
     name { 'MyString' }
-    address { 'MyString' }
+    default_price { '9.99' }
   end
 end
