@@ -6,7 +6,7 @@ feature 'User sign in' do
   end
 
   scenario 'successfully' do
-    create(:user)
+    create(:user, email: 'teste@espertofit.com.br')
 
     visit root_path
     fill_in 'Email', with: 'teste@espertofit.com.br'
