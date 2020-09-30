@@ -21,11 +21,19 @@ RSpec.describe Subsidiary, type: :model do
     end
   end
 
-  it 'generates a token on creation' do
-    subsidiary = create(:subsidiary)
+  context 'token' do
+    it 'generates a token on creation' do
+      subsidiary = create(:subsidiary)
 
-    expect(subsidiary.token).to be_present
-    expect(subsidiary.token.size).to eq(6)
-    expect(subsidiary.token).to match(/^[A-Z0-9]+$/)
+      expect(subsidiary.token).to be_present
+      expect(subsidiary.token.size).to eq(6)
+      expect(subsidiary.token).to match(/^[A-Z0-9]+$/)
+    end
+
+    it 'does not generate a token if validation fails' do
+      subsidiary = Subsidiary.create(name: 'Lorem', cnpj: '10.400.643/1863-76', address: 'R. Lorem, 123')
+
+      expect(subsidiary.token).not_to be_present
+    end
   end
 end
