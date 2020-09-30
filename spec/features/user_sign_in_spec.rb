@@ -6,7 +6,7 @@ feature 'User sign in' do
   end
 
   scenario 'successfully' do
-    user = User.create!(email: 'teste@espertofit.com.br', password: '123456')
+    create(:user)
 
     visit root_path
     fill_in 'Email', with: 'teste@espertofit.com.br'
@@ -17,16 +17,28 @@ feature 'User sign in' do
   end
 
   scenario 'and sign out' do
-    user = User.create!(email: 'teste@espertofit.com.br', password: '123456')
-    
+    user = create(:user)
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Sair'
 
     expect(current_path).to eq new_user_session_path
-    expect(page).to have_content "Para continuar, efetue login ou registre-se."
-    expect(page).to have_button "Entrar"
-    expect(page).not_to have_content "Sair"
+    expect(page).to have_content 'Para continuar, efetue login ou registre-se.'
+    expect(page).to have_button 'Entrar'
+    expect(page).not_to have_content 'Sair'
   end
 
+  scenario 'and must fill all blanks' do
+    visit root_path
+    click_on 'Entrar'
+
+    expect(page).to have_content('Email ou senha inválida')
+  end
+
+  scenario 'and do not show sign up' do
+    visit root_path
+
+    expect(page).not_to have_content('Sign up')
+  end
 end
