@@ -1,0 +1,19 @@
+<%= form_with model: @schedule, url: schedule_subsidiary_path(@subsidiary), local: true do |f| %>
+  <%= f.label :monday %>
+  <%= f.text_field :monday %>
+  <%= f.label :tuesday %>
+  <%= f.text_field :tuesday %>
+  <%= f.label :wednesday %>
+  <%= f.text_field :wednesday %>
+  <%= f.label :thursday %>
+  <%= f.text_field :thursday %>
+  <%= f.label :friday %>
+  <%= f.text_field :friday %>
+  <%= f.label :saturday %>
+  <%= f.text_field :saturday %>
+  <%= f.label :sunday %>
+  <%= f.text_field :sunday %>
+  <%= f.label :holidays %>
+  <%= f.text_field :holidays %>
+  <%= f.submit 'Enviar' %>
+<% end %>

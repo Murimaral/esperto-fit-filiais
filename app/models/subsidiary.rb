@@ -1,4 +1,6 @@
 class Subsidiary < ApplicationRecord
+  has_one :schedule, dependent: :destroy
+
   validates :name, :address, :cnpj, presence: true
   validates :cnpj, :name, uniqueness: true
 

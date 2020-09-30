@@ -1,4 +1,4 @@
-<h1><%= @subsidiary.name %></h1>
+h1><%= @subsidiary.name %></h1>
 <p>
   <%= @subsidiary.address %>
 </p>
@@ -6,3 +6,17 @@
 <p>
   <%= @subsidiary.cnpj %>
 </p>
+
+<h2>Horários</h2>
+<% if @subsidiary.schedule %>
+  <p><%= "#{Schedule.human_attribute_name :monday}: #{@subsidiary.schedule.monday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :tuesday}: #{@subsidiary.schedule.tuesday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :wednesday}: #{@subsidiary.schedule.wednesday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :thursday}: #{@subsidiary.schedule.thursday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :friday}: #{@subsidiary.schedule.friday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :saturday}: #{@subsidiary.schedule.saturday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :sunday}: #{@subsidiary.schedule.sunday}" %></p>
+  <p><%= "#{Schedule.human_attribute_name :holidays}: #{@subsidiary.schedule.holidays}" %></p>
+<% end %>
+
+<%= link_to 'Gerenciar Horários', schedule_subsidiary_path(@subsidiary) %>
