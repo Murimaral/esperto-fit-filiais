@@ -49,6 +49,5 @@ feature 'Admin creates subsidiary' do
 
     expect(page).to have_content('A filial não foi criada.')
     expect(page).to have_content('CNPJ não é válido')
-    expect(Subsidiary.all.count).to eq(0)
   end
 end
