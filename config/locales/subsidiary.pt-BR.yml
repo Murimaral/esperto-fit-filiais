@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  controllers:
+    subsidiary:
+      created: Filial criada com sucesso!
+      creation_failed: A filial não foi criada.
   activerecord:
     models:
       subsidiary:

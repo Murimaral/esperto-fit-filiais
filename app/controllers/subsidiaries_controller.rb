@@ -13,9 +13,9 @@ class SubsidiariesController < ApplicationController
     @subsidiary = Subsidiary.new(subsidiary_params)
 
     if @subsidiary.save
-      redirect_to @subsidiary, notice: 'Filial criada com sucesso!'
+      redirect_to @subsidiary, notice: t('controllers.subsidiary.created')
     else
-      flash.now[:alert] = 'A filial não foi criada.'
+      flash.now[:alert] = t('controllers.subsidiary.creation_failed')
       render :new
     end
   end
