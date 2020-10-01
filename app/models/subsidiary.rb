@@ -15,11 +15,9 @@ class Subsidiary < ApplicationRecord
   private
 
   def generate_token
-    generated_token = ''
-    loop do
+    self.token = loop do
       generated_token = SecureRandom.alphanumeric(6).upcase
-      break if Subsidiary.find_by(token: generated_token).blank?
+      break generated_token unless Subsidiary.exists?(token: generated_token)
     end
-    self.token = generated_token
   end
 end
