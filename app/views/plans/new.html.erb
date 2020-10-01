@@ -1,0 +1,23 @@
+
+ <% if @plan.errors.present? %>
+  <% @plan.errors.full_messages.each do |message| %>
+     <%= message %>
+  <%end%>
+ <%end%>
+
+
+<%= form_with model: @plan, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <div>
+  <%= f.label :default_price %>
+  <%= f.number_field :default_price %>
+  </div>
+  <div>
+  <%= f.label :minimum_period %> (meses)
+  <%= f.number_field :minimum_period %>
+  </div>
+  <div>
+  <%= f.submit 'Criar plano'%>
+  </div>
+<% end %>

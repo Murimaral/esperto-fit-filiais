@@ -1,0 +1,10 @@
+<%= link_to 'Voltar', plans_path %>
+
+<dl>
+  <dt><%= Plan.human_attribute_name(:name) %></dt>
+  <dd><%= @plan.name %></dd>
+  <dt><%= Plan.human_attribute_name(:default_price) %></dt>
+  <dd><%= number_to_currency @plan.default_price %></dd>
+  <dt><%= Plan.human_attribute_name(:minimum_period) %></dt>
+  <dd><%= @plan.minimum_period %> meses</dd>
+</dl>

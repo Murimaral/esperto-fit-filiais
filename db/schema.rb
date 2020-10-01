@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_184040) do
+ActiveRecord::Schema.define(version: 2020_10_01_200106) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.decimal "default_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "minimum_period"
   end
 
   create_table "profiles", force: :cascade do |t|
