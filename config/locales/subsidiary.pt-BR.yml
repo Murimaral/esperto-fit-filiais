@@ -1,0 +1,16 @@
+---
+pt-BR:
+  controllers:
+    subsidiary:
+      created: Filial criada com sucesso!
+      creation_failed: A filial não foi criada.
+  activerecord:
+    models:
+      subsidiary:
+        one: Filial
+        other: Filiais
+    attributes:
+      subsidiary:
+        name: Nome
+        address: Endereço
+        cnpj: CNPJ

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_184040) do
+ActiveRecord::Schema.define(version: 2020_09_30_192057) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(version: 2020_09_29_184040) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cnpj"
+    t.string "token"
+    t.index ["cnpj"], name: "index_subsidiaries_on_cnpj", unique: true
+    t.index ["name"], name: "index_subsidiaries_on_name", unique: true
+    t.index ["token"], name: "index_subsidiaries_on_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
