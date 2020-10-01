@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_192057) do
     t.string "token"
     t.index ["cnpj"], name: "index_subsidiaries_on_cnpj", unique: true
     t.index ["name"], name: "index_subsidiaries_on_name", unique: true
+    t.index ["token"], name: "index_subsidiaries_on_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|

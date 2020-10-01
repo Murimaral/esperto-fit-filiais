@@ -35,5 +35,16 @@ RSpec.describe Subsidiary, type: :model do
 
       expect(subsidiary.token).not_to be_present
     end
+
+    it 'must be unique' do
+      subsidiary = create(:subsidiary)
+      new_subsidiary = build(:subsidiary)
+      allow(SecureRandom).to receive(:alphanumeric).and_return(subsidiary.token, 'ABC123')
+
+      new_subsidiary.save
+
+      expect(new_subsidiary).to be_persisted
+      expect(new_subsidiary.token).not_to eq(subsidiary.token)
+    end
   end
 end

@@ -1,6 +1,6 @@
 class Subsidiary < ApplicationRecord
   validates :name, :address, :cnpj, presence: true
-  validates :cnpj, :name, uniqueness: true
+  validates :cnpj, :name, :token, uniqueness: true
 
   validate :cnpj_must_be_valid
 
@@ -9,12 +9,17 @@ class Subsidiary < ApplicationRecord
   def cnpj_must_be_valid
     return if cnpj.blank? || CNPJ.valid?(cnpj)
 
-    errors.add(:cnpj, 'não é válido')
+    errors.add :cnpj, :invalid
   end
 
   private
 
   def generate_token
-    self.token = SecureRandom.alphanumeric(6).upcase
+    generated_token = ''
+    loop do
+      generated_token = SecureRandom.alphanumeric(6).upcase
+      break if Subsidiary.find_by(token: generated_token).blank?
+    end
+    self.token = generated_token
   end
 end

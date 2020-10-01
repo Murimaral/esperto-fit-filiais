@@ -148,8 +148,8 @@ pt-BR:
     select:
       prompt: Por favor selecione
     submit:
-      create: Criar %{model}
-      submit: Salvar %{model}
+      create: Enviar
+      submit: Enviar
       update: Atualizar %{model}
   number:
     currency:
