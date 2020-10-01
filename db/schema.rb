@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_195950) do
+ActiveRecord::Schema.define(version: 2020_09_30_192057) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
@@ -27,21 +27,6 @@ ActiveRecord::Schema.define(version: 2020_09_30_195950) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.integer "subsidiary_id", null: false
-    t.string "monday"
-    t.string "tuesday"
-    t.string "wednesday"
-    t.string "thursday"
-    t.string "friday"
-    t.string "saturday"
-    t.string "sunday"
-    t.string "holidays"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["subsidiary_id"], name: "index_schedules_on_subsidiary_id"
   end
 
   create_table "subsidiaries", force: :cascade do |t|
@@ -68,5 +53,4 @@ ActiveRecord::Schema.define(version: 2020_09_30_195950) do
   end
 
   add_foreign_key "profiles", "users"
-  add_foreign_key "schedules", "subsidiaries"
 end

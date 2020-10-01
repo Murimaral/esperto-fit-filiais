@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :subsidiary do
-    sequence(:name) { |i| "Lorem#{i}" }
+    name { 'Lorem Ipsum' }
     address { 'R. Lorem Ipsum, XXX, Lorem, Ipsum' }
-    cnpj { CNPJ.generate(true) }
+    cnpj { '10.813.643/1863-76' }
   end
 end
