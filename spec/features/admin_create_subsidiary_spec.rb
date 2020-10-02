@@ -20,6 +20,12 @@ feature 'Admin creates subsidiary' do
     expect(page).to have_content('R. Lorem Ipsum, 123 - Vila Olímpia - São Paulo/SP')
   end
 
+  scenario 'must be logged in' do
+    visit new_subsidiary_path
+
+    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
+  end
+
   scenario 'must fill in all fields' do
     user = create(:user)
 

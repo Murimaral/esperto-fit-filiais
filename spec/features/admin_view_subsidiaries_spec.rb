@@ -44,8 +44,15 @@ feature 'Admin view subsidiaries' do
     expect(page).to have_content('Não há filiais cadastradas')
   end
 
-  scenario 'must be logged in' do
+  scenario 'must be logged in to view index' do
     visit subsidiaries_path
+
+    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
+  end
+
+  scenario 'must be logged in to view details' do
+    subsidiary = create(:subsidiary)
+    visit subsidiary_path(subsidiary.id)
 
     expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
