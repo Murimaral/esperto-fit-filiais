@@ -1,0 +1,16 @@
+---
+pt-BR:
+  controllers:
+    product:
+      created: Produto criado com sucesso!
+      creation_failed: O produto não foi criado.
+  activerecord:
+    models:
+      product:
+        one: Produto
+        other: Produtos
+    attributes:
+      product:
+        name: Nome
+        description: Descrição
+        min_price: Preço mínimo
