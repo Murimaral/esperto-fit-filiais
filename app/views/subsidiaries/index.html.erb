@@ -2,8 +2,14 @@
   <p>Não há filiais cadastradas</p>
 <% end %>
 
-<%= @subsidiaries.each do |subsidiary| %>
-  <p><%= subsidiary.name %></p>
-<% end %>
+<ul>
+  <% @subsidiaries.each do |subsidiary| %>
+    <li>
+      <%= link_to subsidiary.name, subsidiary %>
+      <%= subsidiary.token %>
+    </li>
+  <% end %>
+</ul>
 
 <%= link_to 'Adicionar filial', new_subsidiary_path %>
+<%= link_to 'Voltar', root_path %>
