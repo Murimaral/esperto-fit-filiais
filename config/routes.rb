@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :plans, only: %i[index new create show]
+  resources :subsidiaries, only: %i[index show new create]
 end

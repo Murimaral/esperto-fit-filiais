@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 2020_10_02_145418) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cnpj"
+    t.string "token"
+    t.index ["cnpj"], name: "index_subsidiaries_on_cnpj", unique: true
+    t.index ["name"], name: "index_subsidiaries_on_name", unique: true
+    t.index ["token"], name: "index_subsidiaries_on_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
