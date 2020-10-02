@@ -10,13 +10,13 @@ RSpec.describe Plan, type: :model do
 
       expect(another_plan.errors[:name]).to include('já está em uso')
     end
-    
+
     it 'default price must be greater than 0' do
-       plan = build(:plan, default_price: -19)
+      plan = build(:plan, default_price: -19)
 
-       plan.valid?
+      plan.valid?
 
-       expect(plan.errors[:default_price]).to include('deve ser maior que 0')
+      expect(plan.errors[:default_price]).to include('deve ser maior que 0')
     end
 
     it 'minimum period must be greater than 0' do

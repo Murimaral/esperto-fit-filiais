@@ -7,11 +7,9 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    if @plan.save
-      redirect_to @plan
-    else
-      render :new
-    end
+    return redirect_to @plan if @plan.save
+
+    render :new
   end
 
   def show
