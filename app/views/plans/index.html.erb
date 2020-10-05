@@ -1,1 +1,20 @@
+<%= link_to 'Voltar', root_path %>
 <%= link_to 'Novo plano', new_plan_path %>
+
+<% if @plans.empty? %>
+  <h3>Não há planos cadastrados.</h3>
+<% else %>
+  <table style="border:solid" >
+    <tr>
+      <th><%= Plan.human_attribute_name(:name) %></th>
+      <th><%= Plan.human_attribute_name(:default_price) %></th>
+      <th><%= Plan.human_attribute_name(:minimum_period) %></th>
+    </tr>
+  <% @plans.each do |plan| %>
+    <tr>
+      <td><%= plan.name %></td>
+      <td><%= number_to_currency plan.default_price %></td>
+      <td><%= plan.minimum_period %> meses</td>
+    </tr>
+  <% end %>
+<% end %>
