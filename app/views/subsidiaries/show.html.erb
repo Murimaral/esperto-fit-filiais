@@ -1,8 +1,12 @@
-<h1><%= @subsidiary.name %></h1>
-<p>
-  <%= @subsidiary.address %>
-</p>
+<dl>
+  <dt><%= Subsidiary.human_attribute_name(:name) %></dt>
+  <dd><%= @subsidiary.name %></dd>
+  <dt><%= Subsidiary.human_attribute_name(:address) %></dt>
+  <dd><%= @subsidiary.address %></dd>
+  <dt><%= Subsidiary.human_attribute_name(:cnpj) %></dt>
+  <dd><%= @subsidiary.cnpj %></dd>
+  <dt><%= Subsidiary.human_attribute_name(:token) %></dt>
+  <dd><%= @subsidiary.token %></dd>
+</dl>
 
-<p>
-  <%= @subsidiary.cnpj %>
-</p>
+<%= link_to 'Voltar', subsidiaries_path %>
