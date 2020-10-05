@@ -6,3 +6,9 @@
   <dt><%= Product.human_attribute_name(:min_price) %></dt>
   <dd><%= number_to_currency @product.min_price %></dd>
 </dl>
+
+<% if @product.image.present? %>
+  <%= image_tag @product.image %>
+<% end %>
+
+<%= link_to 'Voltar', products_path %>

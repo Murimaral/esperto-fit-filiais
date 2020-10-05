@@ -11,6 +11,7 @@ feature 'Admin create product' do
     fill_in 'Nome', with: 'Camiseta EspertoFit'
     fill_in 'Descrição', with: 'Camiseta EspertoFit Preta Tamanho G'
     fill_in 'Preço mínimo', with: 30
+    attach_file 'Imagem', Rails.root.join('spec/support/image.jpg')
     click_on 'Enviar'
 
     expect(current_path).to eq(product_path(Product.last.id))
@@ -18,6 +19,7 @@ feature 'Admin create product' do
     expect(page).to have_content('Camiseta EspertoFit')
     expect(page).to have_content('Camiseta EspertoFit Preta Tamanho G')
     expect(page).to have_content('R$ 30,00')
+    expect(page).to have_css('img[src*="image.jpg"]')
   end
 
   scenario 'must be logged in' do
