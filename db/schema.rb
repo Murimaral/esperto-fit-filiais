@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2020_10_05_193650) do
     t.decimal "default_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "minimum_period"
+    t.index ["name"], name: "index_plans_on_name", unique: true
   end
 
   create_table "products", force: :cascade do |t|
