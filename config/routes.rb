@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   resources :plans, only: %i[index new create show]
   resources :subsidiaries, only: %i[index show new create]
+  resources :enrollments, only: %i[index show]
 end

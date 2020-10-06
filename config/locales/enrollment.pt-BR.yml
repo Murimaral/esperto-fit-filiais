@@ -1,0 +1,13 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      enrollment:
+        one: Matrícula
+        other: Matrículas
+    attributes:
+      enrollment:
+        customer_name: Nome do cliente
+        customer_cpf: CPF do cliente
+        valid_thru: Data de vencimento
+        token: Código

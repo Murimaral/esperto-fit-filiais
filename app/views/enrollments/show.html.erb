@@ -1,0 +1,10 @@
+<dl>
+  <dt><%= Enrollment.human_attribute_name(:name) %></dt>
+  <dd><%= @enrollment.customer_name %></dd>
+  <dt><%= Enrollment.human_attribute_name(:cpf) %></dt>
+  <dd><%= @enrollment.customer_cpf %></dd>
+  <dt><%= Enrollment.human_attribute_name(:valid_thru) %></dt>
+  <dd><%= @enrollment.valid_thru %></dd>
+  <dt><%= Enrollment.human_attribute_name(:token) %></dt>
+  <dd><%= @enrollment.token %></dd>
+</dl>

@@ -1,0 +1,9 @@
+<ul>
+  <% @enrollments.each do |enrollment| %>
+    <li>
+      <%= link_to enrollment.customer_name, enrollment %>
+      <%= enrollment.token %>
+      <%= enrollment.customer_cpf %>
+    </li>
+  <% end %>
+</ul>
