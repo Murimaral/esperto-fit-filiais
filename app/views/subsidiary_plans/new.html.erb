@@ -1,0 +1,29 @@
+
+<%= form_with model:[@subsidiary, @subsidiary_plan], local: true do |f|%>
+
+  <% @subsidiary_plan.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+
+  <div>
+    <%= f.label :plan_id%>
+    <%= f.collection_select(:plan_id, @plans, :id, :name, prompt: 'Escolha um plano')%>
+  </div>
+
+  <div>
+    <%= f.label :final_price%>
+    <%= f.text_field :final_price%>
+  </div>
+
+  <div>
+    <%= f.label :status%>
+    <%= f.select(:status, options_for_select([['Disponível', :available], ['Indisponível', :unavailable]]))%>
+  </div>
+
+  <div>
+    <%= f.submit "Confirmar"%>
+  </div>
+
+<% end %>
+
+
