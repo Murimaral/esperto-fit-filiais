@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   resources :subsidiaries, only: %i[index show new create] do
     resources :subsidiary_plans, only: %i[new create]
   end
+
+  namespace :api, constraints: { format: :json } do
+    namespace :v1 do
+      resources :subsidiaries, only: %i[index]
+    end
+  end
 end
