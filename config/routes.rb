@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :plans, only: %i[index new create show]
   resources :subsidiaries, only: %i[index show new create]
+  resources :profiles, only: %i[index show new create]
 
   namespace :api, constraints: { format: :json } do
     namespace :v1 do

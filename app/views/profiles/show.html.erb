@@ -1,0 +1,14 @@
+<%= link_to 'Voltar', profiles_path %>
+
+<dl>
+  <dt><%= User.human_attribute_name(:email) %></dt>
+  <dd><%= @profile.user.email %></dd>
+  <dt><%= Profile.human_attribute_name(:full_name) %></dt>
+  <dd><%= @profile.name %></dd>
+  <dt><%= Profile.human_attribute_name(:cpf) %></dt>
+  <dd><%= @profile.default_price %></dd>
+  <dt><%= Profile.human_attribute_name(:address) %></dt>
+  <dd><%= @profile.minimum_period %></dd>
+</dl>
+
+

@@ -1,0 +1,28 @@
+<%= form_with model: @profile, local: true do |f|%>
+
+  <%= f.fields_for :users, User.new do |form| %>
+    <%= form.label :email%>
+    <%= form.text_field :email%>
+    
+    <%= form.label :password%>
+    <%= form.text_field :password%>
+  <% end %>
+
+  <%= f.label :full_name%>
+  <%= f.text_field :full_name%>
+
+  <%= f.label :cpf%>
+  <%= f.text_field :cpf%>
+
+  <%= f.label :address%>
+  <%= f.text_field :address%>
+
+  <%= f.label :subsidiary_id%>
+  <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name)%>
+
+  <%= f.label :role%>
+  <%= f.select(:role, options_for_select([["Admin", "admin"], ["Funcionário", "employee"]]))%>
+
+  <%= f.submit 'Criar'%>
+<%end%>
+
