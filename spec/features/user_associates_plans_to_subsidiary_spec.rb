@@ -1,4 +1,4 @@
-feature 'Admin associates plans to subsidiary' do
+feature 'User associates plans to subsidiary' do
   scenario 'successfully' do
     user = create(:user)
     subsidiary = create(:subsidiary, name: 'Lorem Gym')

@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  subsidiary_plans:
+    create:
+      created: 'Plano cadastrado com sucesso!'
+      not_created: 'Não foi possível cadastrar plano'
   activerecord:
     models:
       subsiadiary_plan:
@@ -13,3 +17,5 @@ pt-BR:
         status: 'Status'
       subsidiary_plan/status:
         unavailable: 'Indisponível'
+        available: 'Disponível'
+    
