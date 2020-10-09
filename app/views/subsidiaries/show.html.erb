@@ -9,6 +9,8 @@
   <dd><%= @subsidiary.token %></dd>
 </dl>
 
+<%= link_to 'Gerenciar matrículas', enrollments_path %>
+
 <h3>Planos disponíveis:</h3>
 
 <% @subsidiary.subsidiary_plans.each do |subsidiary_plan| %>

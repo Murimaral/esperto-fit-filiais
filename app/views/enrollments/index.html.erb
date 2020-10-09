@@ -1,0 +1,12 @@
+<% if @enrollments.empty? %>
+  <h3>Não há matriculas cadastradas.</h3>
+<% end %>
+<ul>
+  <% @enrollments.each do |enrollment| %>
+    <li>
+      <%= link_to enrollment.customer_name, enrollment %>
+      <%= enrollment.token %>
+      <%= enrollment.customer_cpf %>
+    </li>
+  <% end %>
+</ul>

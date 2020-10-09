@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 2020_10_08_200153) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "enrollments", force: :cascade do |t|
+    t.string "token"
+    t.string "customer_name"
+    t.string "customer_cpf"
+    t.string "email"
+    t.decimal "price"
+    t.integer "status", default: 0
+    t.date "valid_thru"
+    t.integer "subsidiary_plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subsidiary_plan_id"], name: "index_enrollments_on_subsidiary_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.decimal "default_price"
@@ -98,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_200153) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "enrollments", "subsidiary_plans"
   add_foreign_key "profiles", "users"
   add_foreign_key "subsidiary_plans", "plans"
   add_foreign_key "subsidiary_plans", "subsidiaries"
