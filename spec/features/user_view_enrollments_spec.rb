@@ -4,11 +4,10 @@ feature 'User views enrollments' do
   scenario 'successfully' do
     user = create(:user)
     subsidiary = create(:subsidiary)
-    # TODO: Adicionar plano na matrícula
-    enrollment1 = Enrollment.create!(customer_name: 'Lorem Name 1', customer_cpf: '159.422.547-88',
-                                     valid_thru: Date.current + 1.year)
-    enrollment2 = Enrollment.create!(customer_name: 'Lorem Name 2', customer_cpf: '901.516.426-64',
-                                     valid_thru: Date.current + 6.months)
+    enrollment1 = create(:enrollment, customer_name: 'Lorem Name 1', customer_cpf: '159.422.547-88',
+                                      valid_thru: Date.current + 1.year)
+    enrollment2 = create(:enrollment, customer_name: 'Lorem Name 2', customer_cpf: '901.516.426-64',
+                                      valid_thru: Date.current + 6.months)
 
     login_as user
     visit subsidiary_path(subsidiary)
@@ -20,20 +19,52 @@ feature 'User views enrollments' do
     expect(page).to have_content(enrollment2.token)
     expect(page).to have_content('Lorem Name 2')
     expect(page).to have_content('901.516.426-64')
+    expect(page).to_not have_css('h3', text: 'Não há matriculas cadastradas.')
   end
 
   scenario 'and view details' do
     user = create(:user)
     subsidiary = create(:subsidiary)
-    enrollment = create(:enrollment)
+    enrollment = create(:enrollment, status: :active, price: 98.90)
 
     login_as user
     visit subsidiary_path(subsidiary)
     click_on 'Gerenciar matrículas'
     click_on enrollment.customer_name
 
+    expect(page).to have_content(enrollment.token)
     expect(page).to have_content(enrollment.customer_name)
     expect(page).to have_content(enrollment.customer_cpf)
     expect(page).to have_content(enrollment.valid_thru)
+    expect(page).to have_content(enrollment.email)
+    expect(page).to have_content('Ativa')
+    expect(page).to have_content(enrollment.subsidiary_plan.plan.name)
+    expect(page).to have_content('R$ 98,90')
+  end
+
+  scenario 'and there is no enrollment registered' do
+    user = create(:user)
+    subsidiary = create(:subsidiary)
+
+    login_as user
+    visit subsidiary_path(subsidiary)
+    click_on 'Gerenciar matrículas'
+
+    expect(page).to have_css('h3', text: 'Não há matriculas cadastradas.')
+  end
+
+  scenario 'and must be logged in to view index' do
+    subsidiary = create(:subsidiary)
+    visit subsidiary_path(subsidiary)
+
+    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
+  end
+
+  scenario 'and must be logged in to view details' do
+    enrollment = create(:enrollment)
+
+    visit enrollment_path(enrollment)
+
+    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
 end

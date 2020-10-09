@@ -1,3 +1,6 @@
+<% if @enrollments.empty? %>
+  <h3>Não há matriculas cadastradas.</h3>
+<% end %>
 <ul>
   <% @enrollments.each do |enrollment| %>
     <li>

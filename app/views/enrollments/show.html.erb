@@ -7,4 +7,12 @@
   <dd><%= @enrollment.valid_thru %></dd>
   <dt><%= Enrollment.human_attribute_name(:token) %></dt>
   <dd><%= @enrollment.token %></dd>
+  <dt><%= Enrollment.human_attribute_name(:status) %></dt>
+  <dd><%= Enrollment.human_attribute_name("status.#{@enrollment.status}") %></dd>
+  <dt><%= Enrollment.human_attribute_name(:plan) %></dt>
+  <dd><%= @enrollment.subsidiary_plan.plan.name %></dd>
+  <dt><%= Enrollment.human_attribute_name(:email) %></dt>
+  <dd><%= @enrollment.email %></dd>
+  <dt><%= Enrollment.human_attribute_name(:price) %></dt>
+  <dd><%= number_to_currency @enrollment.price %></dd>
 </dl>

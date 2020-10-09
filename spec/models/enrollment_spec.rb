@@ -1,42 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Enrollment, type: :model do
-  context 'validation' do
-    it 'customer CPF must be unique' do
-      create(:enrollment, customer_cpf: '901.516.426-64')
-      new_enrollment = build(:enrollment, customer_cpf: '901.516.426-64')
+  it 'calculates the valid_thru according to plan' do
+    plan = create(:plan, minimum_period: 5)
+    subsidiary_plan = create(:subsidiary_plan, plan: plan)
+    enrollment = create(:enrollment, subsidiary_plan: subsidiary_plan)
 
-      new_enrollment.valid?
-
-      expect(new_enrollment.errors[:customer_cpf]).to include('já está em uso')
-    end
-
-    it 'valid thru must be greater than current date' do
-      enrollment = build(:enrollment, valid_thru: Date.yesterday)
-
-      enrollment.valid?
-
-      expect(enrollment.errors[:valid_thru]).to include('deve ser maior ou igual a')
-    end
+    expect(enrollment.valid_thru).to eq(Date.current + plan.minimum_period.months)
   end
 
-  context 'token' do
-    it 'generates a token on creation' do
-      enrollment = create(:enrollment)
+  it 'generates a token on creation' do
+    enrollment = create(:enrollment)
 
-      expect(enrollment.token.size).to eq(6)
-      expect(enrollment.token).to match(/^[A-Z0-9]+$/)
-    end
+    expect(enrollment.token.size).to eq(6)
+    expect(enrollment.token).to match(/^[A-Z0-9]+$/)
+  end
 
-    it 'must be unique' do
-      enrollment = create(:enrollment)
-      new_enrollment = build(:enrollment)
-      allow(SecureRandom).to receive(:alphanumeric).and_return(enrollment.token, 'ABC123')
+  it 'token must be unique' do
+    enrollment = create(:enrollment)
+    new_enrollment = build(:enrollment)
+    allow(SecureRandom).to receive(:alphanumeric).and_return(enrollment.token, 'ABC123')
 
-      new_enrollment.save
+    new_enrollment.save
 
-      expect(new_enrollment).to be_persisted
-      expect(new_enrollment.token).not_to eq(enrollment.token)
-    end
+    expect(new_enrollment).to be_persisted
+    expect(new_enrollment.token).not_to eq(enrollment.token)
   end
 end
