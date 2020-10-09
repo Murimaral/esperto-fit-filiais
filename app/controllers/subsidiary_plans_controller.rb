@@ -1,5 +1,5 @@
 class SubsidiaryPlansController < ApplicationController
-  before_action :set_subsidiary_plans, only: %i[new create]
+  before_action :set_subsidiary_plans, only: %i[new]
 
   def new
     @subsidiary_plan = SubsidiaryPlan.new
@@ -9,6 +9,7 @@ class SubsidiaryPlansController < ApplicationController
     @subsidiary_plan = SubsidiaryPlan.new(subsidiary_plan_params)
     return redirect_to subsidiary_path(params[:subsidiary_id]), notice: t('.created') if @subsidiary_plan.save
 
+    set_subsidiary_plans
     flash.now[:alert] = t('.not_created')
     render :new
   end
@@ -22,6 +23,6 @@ class SubsidiaryPlansController < ApplicationController
 
   def set_subsidiary_plans
     @subsidiary = Subsidiary.find(params[:subsidiary_id])
-    @plans = Plan.where.not(id: @subsidiary.plans)
+    @plans = Plan.where.not(id: @subsidiary.plans.ids)
   end
 end

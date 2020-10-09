@@ -5,7 +5,7 @@
 <ul>
   <% @subsidiaries.each do |subsidiary| %>
     <li>
-      <%= link_to subsidiary.name, subsidiary_path(subsidiary.id) %>
+      <%= link_to subsidiary.name, subsidiary %>
       <%= subsidiary.token %>
     </li>
   <% end %>

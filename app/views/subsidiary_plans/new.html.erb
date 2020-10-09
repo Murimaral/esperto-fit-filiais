@@ -17,7 +17,7 @@
 
   <div>
     <%= f.label :status%>
-    <%= f.select(:status, options_for_select([['Disponível', :available], ['Indisponível', :unavailable]]))%>
+    <%= f.select(:status, SubsidiaryPlan.statuses.keys.map { |key| [SubsidiaryPlan.human_attribute_name("status.#{key}"), key] })%>
   </div>
 
   <div>
