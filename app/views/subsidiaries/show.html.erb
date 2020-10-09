@@ -9,5 +9,23 @@
   <dd><%= @subsidiary.token %></dd>
 </dl>
 
-<%= link_to 'Voltar', subsidiaries_path %>
 <%= link_to 'Gerenciar matrículas', enrollments_path %>
+
+<h3>Planos disponíveis:</h3>
+
+<% @subsidiary.subsidiary_plans.each do |subsidiary_plan| %>
+  <dl>
+  <dt><%= Plan.human_attribute_name(:name) %></dt>
+  <dd><%= subsidiary_plan.plan.name %></dd>
+  <dt><%= SubsidiaryPlan.human_attribute_name(:final_price) %></dt>
+  <dd><%= number_to_currency subsidiary_plan.final_price %></dd>
+  <dt><%= Plan.human_attribute_name(:minimum_period) %></dt>
+  <dd><%= subsidiary_plan.plan.minimum_period %> meses</dd>
+  <dt><%= SubsidiaryPlan.human_attribute_name(:status) %></dt>
+  <dd><%= SubsidiaryPlan.human_attribute_name("status.#{subsidiary_plan.status}") %></dd>
+</dl>
+<% end %>
+
+<%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %>
+
+<%= link_to 'Voltar', subsidiaries_path %>
