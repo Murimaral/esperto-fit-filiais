@@ -1,0 +1,21 @@
+---
+pt-BR:
+  subsidiary_plans:
+    create:
+      created: 'Plano cadastrado com sucesso!'
+      not_created: 'Não foi possível cadastrar plano'
+  activerecord:
+    models:
+      subsiadiary_plan:
+        one: 'Plano da filial'
+        other: 'Planos da filial'
+    attributes:
+      subsidiary_plan:
+        plan_id: 'Plano'
+        final_price: 'Preço final'
+        subsiadiary: 'Filial'
+        status: 'Status'
+      subsidiary_plan/status:
+        unavailable: 'Indisponível'
+        available: 'Disponível'
+    
