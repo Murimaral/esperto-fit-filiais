@@ -1,9 +1,9 @@
 ---
 pt-BR:
-  controllers:
-    product:
+  products:
+    create:
       created: Produto criado com sucesso!
-      creation_failed: O produto não foi criado.
+      not_created: O produto não foi criado.
   activerecord:
     models:
       product:

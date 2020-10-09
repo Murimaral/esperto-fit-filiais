@@ -14,9 +14,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product, notice: t('controllers.product.created')
+      redirect_to @product, notice: t('.created')
     else
-      flash.now[:alert] = t('controllers.product.creation_failed')
+      flash.now[:alert] = t('.not_created')
       render :new
     end
   end
