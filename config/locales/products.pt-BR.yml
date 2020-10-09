@@ -1,0 +1,17 @@
+---
+pt-BR:
+  products:
+    create:
+      created: Produto criado com sucesso!
+      not_created: O produto não foi criado.
+  activerecord:
+    models:
+      product:
+        one: Produto
+        other: Produtos
+    attributes:
+      product:
+        name: Nome
+        description: Descrição
+        min_price: Preço mínimo
+        image: Imagem

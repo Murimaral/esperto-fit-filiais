@@ -1,0 +1,17 @@
+<%= link_to 'Adicionar produto', new_product_path %>
+
+<% if @products.empty? %>
+  <p>
+    Não há produtos cadastrados
+  </p>
+<% end %>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= link_to product.name, product %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Voltar', root_path %>
