@@ -1,28 +1,48 @@
+<ul>
+  <% @profile.errors.full_messages.each do |message|%>
+    <li><%= message %></li>
+  <%end%>
+</ul>
+
 <%= form_with model: @profile, local: true do |f|%>
 
   <%= f.fields_for :user, User.new do |user_form| %>
+  <div>
     <%= user_form.label :email%>
     <%= user_form.text_field :email%>
-    
+  </div>  
+
+  <div>
     <%= user_form.label :password%>
     <%= user_form.text_field :password%>
-
+  </div>
+  
+  <div>
     <%= user_form.label :role %>
-    <%= user_form.select(:role, options_for_select([["Admin", "admin"], ["Funcionário", "employee"]]))%>
+    <%= user_form.select(:role, options_for_select([["Selecione a permissão",''],["Admin", "admin"], ["Funcionário", "employee"]],''))%>
+  <div>
+
   <% end %>
+  <div>
+    <%= f.label :full_name%>
+    <%= f.text_field :full_name%>
+  </div>
 
-  <%= f.label :full_name%>
-  <%= f.text_field :full_name%>
+  <div>
+    <%= f.label :cpf%>
+    <%= f.text_field :cpf%>
+  </div>
 
-  <%= f.label :cpf%>
-  <%= f.text_field :cpf%>
-
-  <%= f.label :address%>
-  <%= f.text_field :address%>
-
-  <%= f.label :subsidiary_id%>
-  <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name)%>
-
+  <div>
+    <%= f.label :address%>
+    <%= f.text_field :address%>
+  </div>
+ 
+  <div>
+    <%= f.label :subsidiary_id%>
+    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name, prompt: 'Selecione a filial do usuário')%>
+  </div>
+  
   <%= f.submit 'Criar'%>
 <%end%>
 

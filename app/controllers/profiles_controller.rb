@@ -10,8 +10,13 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.create!(profile_params)
-    redirect_to @profile, notice: 'Usuário cadastrado com sucesso!'
+    @profile = Profile.new(profile_params)
+    if @profile.save
+      redirect_to @profile, notice: 'Usuário cadastrado com sucesso!'
+    else
+      @subsidiaries = Subsidiary.all
+      render :new
+    end
   end
 
   def show
@@ -19,7 +24,9 @@ class ProfilesController < ApplicationController
   end
 
   private
+
   def profile_params
-    params.require(:profile).permit(:full_name,:cpf,:address,:subsidiary_id, user_attributes: [:id, :email, :password, :role])
+    params.require(:profile).permit(:full_name, :cpf, :address, :subsidiary_id,
+                                    user_attributes: %i[id email password role])
   end
 end
