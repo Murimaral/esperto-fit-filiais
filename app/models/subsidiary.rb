@@ -1,4 +1,5 @@
 class Subsidiary < ApplicationRecord
+  has_many :profiles
   validates :name, :address, :cnpj, presence: true
   validates :cnpj, :name, :token, uniqueness: true
 

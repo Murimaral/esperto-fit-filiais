@@ -10,7 +10,6 @@ pt-BR:
         full_name: "Nome completo"
         cpf: "CPF"
         address: "Endereço"
-        role: "Permissão"
         subsidiary: 'Filial'
         subsidiary_id: 'Filial'
 

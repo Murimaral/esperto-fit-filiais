@@ -23,7 +23,7 @@ feature 'Admin creates user' do
     expect(page).to have_content('lorem@espertofit.com.br')
     expect(page).to have_content('Lorem da Silva')
     expect(page).to have_content('704.341.182-30')
-    expect(page).to have_content('Rua Lorem Ipsum 123')
+    expect(page).to have_content('Rua Lorem Ipsum, 123')
     expect(page).to have_content('Lorem1')
     expect(page).to have_content('Funcionário')
   end

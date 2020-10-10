@@ -1,11 +1,14 @@
 <%= form_with model: @profile, local: true do |f|%>
 
-  <%= f.fields_for :users, User.new do |form| %>
-    <%= form.label :email%>
-    <%= form.text_field :email%>
+  <%= f.fields_for :user, User.new do |user_form| %>
+    <%= user_form.label :email%>
+    <%= user_form.text_field :email%>
     
-    <%= form.label :password%>
-    <%= form.text_field :password%>
+    <%= user_form.label :password%>
+    <%= user_form.text_field :password%>
+
+    <%= user_form.label :role %>
+    <%= user_form.select(:role, options_for_select([["Admin", "admin"], ["Funcionário", "employee"]]))%>
   <% end %>
 
   <%= f.label :full_name%>
@@ -19,9 +22,6 @@
 
   <%= f.label :subsidiary_id%>
   <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name)%>
-
-  <%= f.label :role%>
-  <%= f.select(:role, options_for_select([["Admin", "admin"], ["Funcionário", "employee"]]))%>
 
   <%= f.submit 'Criar'%>
 <%end%>

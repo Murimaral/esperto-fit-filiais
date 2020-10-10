@@ -10,4 +10,9 @@ pt-BR:
         email: 'Email'
         password: 'Senha'
         remember_me: 'Lembrar senha'
+        role: "Permissão"
+      user/role:
+        admin: "Administrador"
+        employee: "Funcionário"
+       
         
