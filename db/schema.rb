@@ -12,6 +12,41 @@
 
 ActiveRecord::Schema.define(version: 2020_10_10_040335) do
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.string "token"
+    t.string "customer_name"
+    t.string "customer_cpf"
+    t.string "email"
+    t.decimal "price"
+    t.integer "status", default: 0
+    t.date "valid_thru"
+    t.integer "subsidiary_plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subsidiary_plan_id"], name: "index_enrollments_on_subsidiary_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.decimal "default_price"
@@ -19,6 +54,15 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "minimum_period"
     t.index ["name"], name: "index_plans_on_name", unique: true
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.decimal "min_price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_products_on_name", unique: true
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -45,6 +89,18 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
     t.index ["token"], name: "index_subsidiaries_on_token", unique: true
   end
 
+  create_table "subsidiary_plans", force: :cascade do |t|
+    t.integer "subsidiary_id", null: false
+    t.integer "plan_id", null: false
+    t.integer "status", default: 0
+    t.decimal "final_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id", "subsidiary_id"], name: "index_subsidiary_plans_on_plan_id_and_subsidiary_id", unique: true
+    t.index ["plan_id"], name: "index_subsidiary_plans_on_plan_id"
+    t.index ["subsidiary_id"], name: "index_subsidiary_plans_on_subsidiary_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,6 +114,10 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "enrollments", "subsidiary_plans"
   add_foreign_key "profiles", "subsidiaries"
   add_foreign_key "profiles", "users"
+  add_foreign_key "subsidiary_plans", "plans"
+  add_foreign_key "subsidiary_plans", "subsidiaries"
 end

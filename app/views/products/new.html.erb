@@ -1,0 +1,20 @@
+<h1>Novo Produto</h1>
+
+<% @product.errors.full_messages.each do |error| %>
+  <p>
+    <%= error %>
+  </p>
+<% end %>
+
+
+<%= form_with model: @product, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :min_price %>
+  <%= f.text_area :min_price %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  <%= f.submit %>
+<% end %>
