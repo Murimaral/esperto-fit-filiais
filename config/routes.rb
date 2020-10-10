@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :plans, only: %i[index new create show]
-  resources :enrollments, only: %i[index show]
+  resources :enrollments, only: %i[index show] do
+    resources :banned_customers, only: %i[new create]
+  end
   resources :subsidiaries, only: %i[index show new create] do
     resources :subsidiary_plans, only: %i[new create]
   end

@@ -1,0 +1,14 @@
+---
+pt-BR:
+  banned_customers:
+    create:
+      success: Cliente banido com sucesso
+      fail: Falha ao banir cliente
+  activerecord:
+    models:
+      banned_customer:
+        one: Cliente banido
+        other: Clientes banidos
+    attributes:
+      banned_customer:
+        reason: Motivo

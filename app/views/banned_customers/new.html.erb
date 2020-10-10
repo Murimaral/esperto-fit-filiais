@@ -1,0 +1,11 @@
+<h1>Banimento de cliente</h1>
+
+<%= form_with model: [@enrollment, @banned_customer], local: true do |f| %>
+  <%= @banned_customer.errors.full_messages do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
+  <%= f.label :reason %>
+  <%= f.text_field :reason %>
+  <%= f.submit "Banir o cliente #{@enrollment.customer_name}!" %>
+<% end %>
