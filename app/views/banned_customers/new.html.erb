@@ -7,5 +7,6 @@
 
   <%= f.label :reason %>
   <%= f.text_field :reason %>
+  <%= f.hidden_field :cpf, value: @enrollment.customer_cpf %>
   <%= f.submit "Banir o cliente #{@enrollment.customer_name}!" %>
 <% end %>

@@ -5,16 +5,13 @@ class BannedCustomersController < ApplicationController
   end
 
   def create
-    @banned_customer = BannedCustomer.new(banned_customer_params.merge(user: current_user, banned_at: Time.current,
-                                                                       cpf: @enrollment.customer_cpf))
+    @banned_customer = BannedCustomer.new(banned_customer_params)
 
-    if @banned_customer.save
-      @enrollment.banned!
-      redirect_to enrollments_path, notice: t('.success')
-    else
-      flash.now[:alert] = t('.fail')
-      render :new
-    end
+    @banned_customer.save_and_send_to_api(@enrollment)
+    redirect_to enrollments_path, notice: t('.success')
+  rescue ActiveRecord::RecordInvalid
+    flash.now[:alert] = t('.fail')
+    render :new
   end
 
   private
@@ -24,6 +21,7 @@ class BannedCustomersController < ApplicationController
   end
 
   def banned_customer_params
-    params.require(:banned_customer).permit(:reason)
+    params.require(:banned_customer).permit(:reason, :cpf)
+          .merge(user: current_user)
   end
 end
