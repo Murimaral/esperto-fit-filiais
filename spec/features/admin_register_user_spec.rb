@@ -76,6 +76,6 @@ feature 'Admin creates user' do
     find(:css, "#profile_user_attributes_role_employee").click
     click_on 'Criar'
 
-    expect(page).to have_content('Email deve ter o domínio @espertofit.com.br')
+    expect(page).to have_content('Email não é válido')
   end
 end
