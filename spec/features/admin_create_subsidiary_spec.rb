@@ -11,6 +11,9 @@ feature 'Admin creates subsidiary' do
     fill_in 'Nome', with: 'Vila Olímpia'
     fill_in 'Endereço', with: 'R. Lorem Ipsum, 123 - Vila Olímpia - São Paulo/SP'
     fill_in 'CNPJ', with: '10.813.643/1863-76'
+    attach_file 'Foto da filial 1', Rails.root.join('spec/support/subsidiary_image1.jpg')
+    attach_file 'Foto da filial 2', Rails.root.join('spec/support/subsidiary_image2.jpg')
+    attach_file 'Foto da filial 3', Rails.root.join('spec/support/subsidiary_image3.jpg')
     click_on 'Enviar'
 
     expect(current_path).to eq(subsidiary_path(Subsidiary.last.id))
@@ -18,6 +21,9 @@ feature 'Admin creates subsidiary' do
     expect(page).to have_content('Vila Olímpia')
     expect(page).to have_content('10.813.643/1863-76')
     expect(page).to have_content('R. Lorem Ipsum, 123 - Vila Olímpia - São Paulo/SP')
+    expect(page).to have_css('img[src*="subsidiary_image1.jpg"]')
+    expect(page).to have_css('img[src*="subsidiary_image2.jpg"]')
+    expect(page).to have_css('img[src*="subsidiary_image3.jpg"]')
   end
 
   scenario 'must be logged in' do

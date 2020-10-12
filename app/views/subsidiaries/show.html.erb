@@ -26,6 +26,18 @@
 </dl>
 <% end %>
 
+<h4>Fotos da filial</h4>
+
+<% if @subsidiary.image1.present? %>
+  <%= image_tag @subsidiary.image1 %>
+<% end %>
+<% if @subsidiary.image2.present? %>
+  <%= image_tag @subsidiary.image2 %>
+<% end %>
+<% if @subsidiary.image3.present? %>
+  <%= image_tag @subsidiary.image3 %>
+<% end %>
+
 <%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %>
 
 <%= link_to 'Voltar', subsidiaries_path %>
