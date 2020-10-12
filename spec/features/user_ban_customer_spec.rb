@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 feature 'User bans customer' do
+  include ActiveSupport::Testing::TimeHelpers
+
   scenario 'successfully' do
     user = create(:user)
     subsidiary = create(:subsidiary)
@@ -12,10 +14,15 @@ feature 'User bans customer' do
     click_on enrollment.customer_name
     click_on 'Banir cliente'
     fill_in 'Motivo', with: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, beatae.'
-    click_on "Banir o cliente #{enrollment.customer_name}"
+    travel_to Time.zone.local(2020, 11, 24, 12, 30, 44) do
+      click_on "Banir o cliente #{enrollment.customer_name}"
+    end
 
     expect(page).to have_content('Cliente banido com sucesso')
-    expect(current_path).to eq(enrollments_path)
+    expect(page).to have_content('Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, beatae.')
+    expect(page).to have_content(enrollment.customer_cpf)
+    expect(page).to have_content('24/11/2020 às 12:30')
+    expect(page).to have_content(user.email)
     expect(enrollment.reload).to be_banned
   end
 

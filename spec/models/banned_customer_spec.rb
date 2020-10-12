@@ -9,8 +9,8 @@ RSpec.describe BannedCustomer, type: :model do
     it { should validate_presence_of(:reason) }
   end
 
-  context 'methods' do
-    it 'sets banned_at timestamp before validation' do
+  context 'before validation' do
+    it 'sets banned_at timestamp' do
       banned_customer = build(:banned_customer)
 
       travel_to Time.zone.local(2020, 11, 24, 12, 30, 44) do

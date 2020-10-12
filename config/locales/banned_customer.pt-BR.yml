@@ -12,3 +12,7 @@ pt-BR:
     attributes:
       banned_customer:
         reason: Motivo
+        cpf: CPF banido
+        banned_at: Data
+        user: Responsável
+        user_id: Responsável

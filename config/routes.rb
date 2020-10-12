@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :enrollments, only: %i[index show] do
     resources :banned_customers, only: %i[new create]
   end
+  resources :banned_customers, only: %i[show]
   resources :subsidiaries, only: %i[index show new create] do
     resources :subsidiary_plans, only: %i[new create]
   end

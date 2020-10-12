@@ -1,5 +1,10 @@
 class BannedCustomersController < ApplicationController
   before_action :set_enrollment, only: %i[new create]
+
+  def show
+    @banned_customer = BannedCustomer.find(params[:id])
+  end
+
   def new
     @banned_customer = BannedCustomer.new
   end
@@ -7,8 +12,10 @@ class BannedCustomersController < ApplicationController
   def create
     @banned_customer = BannedCustomer.new(banned_customer_params)
 
-    @banned_customer.save_and_send_to_api(@enrollment)
-    redirect_to enrollments_path, notice: t('.success')
+    @banned_customer.save!
+    @enrollment.banned!
+
+    redirect_to @banned_customer, notice: t('.success')
   rescue ActiveRecord::RecordInvalid
     flash.now[:alert] = t('.fail')
     render :new
