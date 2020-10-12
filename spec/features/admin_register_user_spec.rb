@@ -15,7 +15,7 @@ feature 'Admin creates user' do
     fill_in 'CPF', with: '704.341.182-30'
     fill_in 'Endereço', with: 'Rua Lorem Ipsum, 123'
     select subsidiary.name, from: 'Filial'
-    find(:css, "#profile_user_attributes_role_employee").click
+    find(:css, '#profile_user_attributes_role_employee').click
     click_on 'Criar'
 
     expect(page).to have_content('Usuário cadastrado com sucesso!')
@@ -53,7 +53,7 @@ feature 'Admin creates user' do
     fill_in 'CPF', with: '12345678901'
     fill_in 'Endereço', with: 'Rua Lorem Ipsum, 123'
     select subsidiary.name, from: 'Filial'
-    find(:css, "#profile_user_attributes_role_employee").click
+    find(:css, '#profile_user_attributes_role_employee').click
     click_on 'Criar'
 
     expect(page).to have_content('CPF não é válido')
@@ -73,7 +73,7 @@ feature 'Admin creates user' do
     fill_in 'CPF', with: '248.426.360-09'
     fill_in 'Endereço', with: 'Rua Lorem Ipsum, 123'
     select subsidiary.name, from: 'Filial'
-    find(:css, "#profile_user_attributes_role_employee").click
+    find(:css, '#profile_user_attributes_role_employee').click
     click_on 'Criar'
 
     expect(page).to have_content('Email não é válido')
