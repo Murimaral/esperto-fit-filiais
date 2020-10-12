@@ -18,8 +18,10 @@
   </div>
   
   <div>
-    <%= user_form.label :role %>
-    <%= user_form.select(:role, options_for_select([["Selecione a permissão",''],["Admin", "admin"], ["Funcionário", "employee"]],''))%>
+    <%= user_form.radio_button(:role, 'admin') %>
+    <%= label(:role, User.human_attribute_name("role.admin")) %>
+    <%= user_form.radio_button(:role, 'employee') %>
+    <%= label(:role, User.human_attribute_name("role.employee")) %>
   <div>
 
   <% end %>

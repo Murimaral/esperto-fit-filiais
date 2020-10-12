@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "subsidiary_id", null: false
+    t.integer "subsidiary_id"
     t.index ["subsidiary_id"], name: "index_profiles_on_subsidiary_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
