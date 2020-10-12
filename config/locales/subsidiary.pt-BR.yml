@@ -14,6 +14,4 @@ pt-BR:
         name: Nome
         address: Endereço
         cnpj: CNPJ
-        image1: Foto da filial 1
-        image2: Foto da filial 2
-        image3: Foto da filial 3
+        images: Fotos da filial
