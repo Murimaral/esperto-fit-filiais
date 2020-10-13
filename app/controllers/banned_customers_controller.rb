@@ -1,6 +1,10 @@
 class BannedCustomersController < ApplicationController
   before_action :set_enrollment, only: %i[new create]
 
+  def index
+    @banned_customers = BannedCustomer.all
+  end
+
   def show
     @banned_customer = BannedCustomer.find(params[:id])
   end

@@ -26,6 +26,7 @@
 </dl>
 <% end %>
 
-<%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %>
+<p><%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %></p>
+<%= link_to 'Gerenciar banimentos', banned_customers_path %>
 
 <%= link_to 'Voltar', subsidiaries_path %>
