@@ -2,7 +2,6 @@ class BannedCustomersController < ApplicationController
   before_action :set_enrollment, only: %i[new create]
 
   def index
-    # @banned_customers = current_user.subsidiary.banned_customers
     @subsidiary = Subsidiary.find(params[:subsidiary_id])
     @banned_customers = @subsidiary.banned_customers
   end
