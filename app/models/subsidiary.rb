@@ -1,8 +1,9 @@
 class Subsidiary < ApplicationRecord
   has_many :profiles, dependent: :destroy
-
   has_many :subsidiary_plans, dependent: :destroy
+  has_many :enrollments, through: :subsidiary_plans
   has_many :plans, through: :subsidiary_plans
+
   validates :name, :address, :cnpj, presence: true
   validates :cnpj, :name, :token, uniqueness: true
 

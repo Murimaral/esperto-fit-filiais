@@ -4,10 +4,11 @@ feature 'User views enrollments' do
   scenario 'successfully' do
     user = create(:user)
     subsidiary = create(:subsidiary)
+    subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     enrollment1 = create(:enrollment, customer_name: 'Lorem Name 1', customer_cpf: '159.422.547-88',
-                                      valid_thru: Date.current + 1.year)
+                                      valid_thru: Date.current + 1.year, subsidiary_plan: subsidiary_plan)
     enrollment2 = create(:enrollment, customer_name: 'Lorem Name 2', customer_cpf: '901.516.426-64',
-                                      valid_thru: Date.current + 6.months)
+                                      valid_thru: Date.current + 6.months, subsidiary_plan: subsidiary_plan)
 
     login_as user
     visit subsidiary_path(subsidiary)
@@ -25,7 +26,8 @@ feature 'User views enrollments' do
   scenario 'and view details' do
     user = create(:user)
     subsidiary = create(:subsidiary)
-    enrollment = create(:enrollment, status: :active, price: 98.90)
+    subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
+    enrollment = create(:enrollment, status: :active, price: 98.90, subsidiary_plan: subsidiary_plan)
 
     login_as user
     visit subsidiary_path(subsidiary)
@@ -55,16 +57,35 @@ feature 'User views enrollments' do
 
   scenario 'and must be logged in to view index' do
     subsidiary = create(:subsidiary)
-    visit subsidiary_path(subsidiary)
+    visit subsidiary_enrollments_path(subsidiary)
 
     expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
 
   scenario 'and must be logged in to view details' do
     enrollment = create(:enrollment)
+    subsidiary = create(:subsidiary)
 
-    visit enrollment_path(enrollment)
+    visit subsidiary_enrollment_path(subsidiary.id, enrollment.id)
 
     expect(page).to have_content('Para continuar, efetue login ou registre-se.')
+  end
+
+  scenario 'and must view only enrollments from his subsidiary' do
+    user = create(:user, role: :employee)
+    subsidiary = create(:subsidiary)
+    subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
+    create(:profile, user: user, subsidiary: subsidiary)
+    create(:enrollment, customer_name: 'Lorem Name 1', subsidiary_plan: subsidiary_plan)
+    create(:enrollment, customer_name: 'Lorem Name 2', subsidiary_plan: subsidiary_plan)
+    create(:enrollment, customer_name: 'Lorem Name 3')
+
+    login_as user
+    visit subsidiary_path(subsidiary)
+    click_on 'Gerenciar matrículas'
+
+    expect(page).to have_content('Lorem Name 1')
+    expect(page).to have_content('Lorem Name 2')
+    expect(page).to_not have_content('Lorem Name 3')
   end
 end
