@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
-  resources :plans, only: %i[index new create show]
+  resources :plans, only: %i[index new create show edit update]
   resources :profiles, only: %i[index show new create]
   resources :enrollments, only: %i[index show]
   resources :subsidiaries, only: %i[index show new create] do

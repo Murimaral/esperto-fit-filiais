@@ -1,7 +1,9 @@
+<h3>Editar plano:</h3>
+
 <% if @plan.errors.present? %>
- <% @plan.errors.full_messages.each do |message| %>
+  <% @plan.errors.full_messages.each do |message| %>
     <%= message %>
- <%end%>
-<%end%>
+  <% end %>
+<% end %>
 
 <%= render partial: 'form', locals: { plan: @plan } %>
