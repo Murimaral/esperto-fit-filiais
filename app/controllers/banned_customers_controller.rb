@@ -12,19 +12,32 @@ class BannedCustomersController < ApplicationController
   def create
     @banned_customer = BannedCustomer.new(banned_customer_params)
 
-    @banned_customer.save!
+    handle_invalid_record_fail and return unless @banned_customer.valid?
+    handle_send_data_to_api_fail and return unless @banned_customer.send_data_to_customers_api
+
+    @banned_customer.save
     @enrollment.banned!
 
     redirect_to @banned_customer, notice: t('.success')
-  rescue ActiveRecord::RecordInvalid
-    flash.now[:alert] = t('.fail')
-    render :new
   end
 
   private
 
   def set_enrollment
     @enrollment = Enrollment.find(params[:enrollment_id])
+  end
+
+  def handle_invalid_record_fail
+    render_fail('.fail')
+  end
+
+  def handle_send_data_to_api_fail
+    render_fail('.api_fail')
+  end
+
+  def render_fail(msg)
+    flash.now[:alert] = t(msg)
+    render :new
   end
 
   def banned_customer_params

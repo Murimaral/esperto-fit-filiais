@@ -7,6 +7,7 @@ feature 'User bans customer' do
     user = create(:user)
     subsidiary = create(:subsidiary)
     enrollment = create(:enrollment)
+    allow_any_instance_of(BannedCustomer).to receive(:send_data_to_customers_api).and_return(true)
 
     login_as user
     visit subsidiary_path(subsidiary)
@@ -26,6 +27,14 @@ feature 'User bans customer' do
     expect(enrollment.reload).to be_banned
   end
 
+  scenario 'must be logged in' do
+    enrollment = create(:enrollment)
+
+    visit new_enrollment_banned_customer_path(enrollment)
+
+    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
+  end
+
   scenario 'and reason is not filled' do
     user = create(:user)
     subsidiary = create(:subsidiary)
@@ -42,11 +51,21 @@ feature 'User bans customer' do
     expect(page).to have_content('Motivo não pode ficar em branco')
   end
 
-  scenario 'must be logged in' do
+  scenario 'and fails to send data to customers api' do
+    user = create(:user)
+    subsidiary = create(:subsidiary)
     enrollment = create(:enrollment)
+    allow_any_instance_of(BannedCustomer).to receive(:send_data_to_customers_api).and_return(false)
 
-    visit new_enrollment_banned_customer_path(enrollment)
+    login_as user
+    visit subsidiary_path(subsidiary)
+    click_on 'Gerenciar matrículas'
+    click_on enrollment.customer_name
+    click_on 'Banir cliente'
+    fill_in 'Motivo', with: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, beatae.'
+    click_on "Banir o cliente #{enrollment.customer_name}"
 
-    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
+    expect(page).to have_content('Falha ao banir cliente. Não foi possível comunicar o sistema de clientes. '\
+                                 'Tente novamente mais tarde')
   end
 end
