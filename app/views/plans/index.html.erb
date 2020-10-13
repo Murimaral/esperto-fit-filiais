@@ -12,7 +12,7 @@
     </tr>
   <% @plans.each do |plan| %>
     <tr>
-      <td><%= plan.name %></td>
+      <td><%= link_to "#{plan.name}", plan %></td>
       <td><%= number_to_currency plan.default_price %></td>
       <td><%= plan.minimum_period %> meses</td>
     </tr>
