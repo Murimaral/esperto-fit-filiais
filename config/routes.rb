@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :banned_customers, only: %i[new create]
   end
   resources :banned_customers, only: %i[show index]
+  resources :profiles, only: %i[index show new create]
   resources :subsidiaries, only: %i[index show new create] do
     resources :subsidiary_plans, only: %i[new create]
   end
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   namespace :api, constraints: { format: :json } do
     namespace :v1 do
       resources :subsidiaries, only: %i[index]
+      resources :enrollments, only: %i[create]
     end
   end
 end
