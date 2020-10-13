@@ -2,7 +2,9 @@ class BannedCustomersController < ApplicationController
   before_action :set_enrollment, only: %i[new create]
 
   def index
-    @banned_customers = BannedCustomer.all
+    # @banned_customers = current_user.subsidiary.banned_customers
+    @subsidiary = Subsidiary.find(params[:subsidiary_id])
+    @banned_customers = @subsidiary.banned_customers
   end
 
   def show
@@ -22,7 +24,7 @@ class BannedCustomersController < ApplicationController
     @banned_customer.save
     @enrollment.banned!
 
-    redirect_to @banned_customer, notice: t('.success')
+    redirect_to subsidiary_banned_customer_path(current_user.subsidiary.id, @banned_customer.id), notice: t('.success')
   end
 
   private

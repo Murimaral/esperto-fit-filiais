@@ -1,5 +1,6 @@
 class BannedCustomer < ApplicationRecord
   belongs_to :user
+  has_one :subsidiary, through: :user
 
   validates :cpf, :user, :reason, presence: true
   validates :cpf, uniqueness: true

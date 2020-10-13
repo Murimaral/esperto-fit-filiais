@@ -6,6 +6,7 @@ feature 'User bans customer' do
   scenario 'successfully' do
     user = create(:user)
     subsidiary = create(:subsidiary)
+    create(:profile, user: user, subsidiary: subsidiary)
     enrollment = create(:enrollment)
     allow_any_instance_of(BannedCustomer).to receive(:send_data_to_customers_api).and_return(true)
 
