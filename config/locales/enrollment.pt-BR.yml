@@ -14,6 +14,7 @@ pt-BR:
         plan: Plano
         email: Email
         price: Preço
+        subsidiary_plan: 'Plano'
       enrollment/status:
         active: Ativa
         canceled: Cancelada

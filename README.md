@@ -53,3 +53,57 @@ Things you may want to cover:
   }
 ]
 ```
+
+### Criação de matrícula
+
+#### POST /api/v1/enrollments
+
+#### Parâmetros (todos obrigatórios):
+
+```json
+{
+  "enrollment": { 
+    "customer_name": "Lorem",
+    "customer_cpf": "924.737.808-70",
+    "subsidiary_plan_id": 1,
+    "email": "user@mail.com",
+    "price": 99.90 
+  }
+}
+```
+
+**HTTP status:** 201
+
+```json
+{
+  "id": 1,
+  "token": "4G4INJ",
+  "customer_name": "Lorem",
+  "customer_cpf": "924.737.808-70",
+  "email": "user@mail.com",
+  "price": "99.9",
+  "status": "active",
+  "valid_thru": "2021-10-10",
+  "subsidiary_plan_id": 1,
+  "created_at": "2020-10-10T19:33:24.907Z",
+  "updated_at": "2020-10-10T19:33:24.907Z"
+}
+```
+
+**HTTP status:** 412 - Parâmetro inválido
+
+```json
+Parâmetros inválidos
+```
+
+**HTTP status:** 422 - Parâmetros com valores inválidos
+
+```json
+[
+  "Plano é obrigatório(a)",
+  "Preço deve ser maior que 0",
+  "Nome do cliente não pode ficar em branco",
+  "Email não é válido",
+  "CPF do cliente não é válido"
+]
+```

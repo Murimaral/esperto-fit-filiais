@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :profile do
     full_name { 'MyString' }
-    cpf { 'MyString' }
+    cpf { CPF.generate(true) }
     address { 'MyText' }
-    user { nil }
+    user { build(:user) }
+    subsidiary { build(:subsidiary) }
   end
 end

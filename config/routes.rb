@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :plans, only: %i[index new create show]
+  resources :profiles, only: %i[index show new create]
   resources :enrollments, only: %i[index show]
   resources :subsidiaries, only: %i[index show new create] do
     resources :subsidiary_plans, only: %i[new create]
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   namespace :api, constraints: { format: :json } do
     namespace :v1 do
       resources :subsidiaries, only: %i[index]
+      resources :enrollments, only: %i[create]
     end
   end
 end

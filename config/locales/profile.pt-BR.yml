@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      profile:
+        one: 'Perfil'
+        other: 'Perfis'
+    attributes:
+      profile:
+        full_name: "Nome completo"
+        cpf: "CPF"
+        address: "Endereço"
+        subsidiary: 'Filial'
+        subsidiary_id: 'Filial'
+
+  
+
