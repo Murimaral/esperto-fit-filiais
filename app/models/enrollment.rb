@@ -1,5 +1,6 @@
 class Enrollment < ApplicationRecord
   belongs_to :subsidiary_plan
+  has_one :subsidiary, through: :subsidiary_plan
 
   enum status: { active: 0, canceled: 10, banned: 20 }
 
