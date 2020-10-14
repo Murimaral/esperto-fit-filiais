@@ -8,7 +8,7 @@
     </tr>
     <% @banned_customers.each do |banned_customer| %>
       <tr>
-        <td><%= link_to banned_customer.cpf, subsidiary_banned_customer_path(banned_customer.subsidiary.id, banned_customer.id) %></td>
+        <td><%= link_to banned_customer.cpf, [banned_customer.subsidiary, banned_customer] %></td>
         <td><%= banned_customer.user.email %></td>
       </tr>
     <% end %>
