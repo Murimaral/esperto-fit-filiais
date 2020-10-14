@@ -54,6 +54,36 @@ Things you may want to cover:
 ]
 ```
 
+#### GET /api/v1/subsidiaries/:id
+
+**HTTP status:** 200
+
+```json
+{
+  "data": {
+    "id": 3,
+    "name": "Lorem1",
+    "address": "R. Lorem Ipsum, XXX, Lorem, Ipsum",
+    "cnpj": "58.520.759/8766-09",
+    "token": "X2VBDD",
+    "subsidiary_plans": [
+      {
+        "name": "Plano1",
+        "final_price": "9.99",
+        "status": "unavailable"
+      }
+    ]
+  }
+}
+```
+
+
+**HTTP status:** 404 - Não encontrado
+
+```json
+Filial não encontrada
+```
+
 ### Criação de matrícula
 
 #### POST /api/v1/enrollments

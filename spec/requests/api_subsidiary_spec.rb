@@ -35,15 +35,17 @@ describe 'Api subsidiary' do
       end
 
       it 'returns subsidiary' do
-        create(:plan)
-        create(:subsidiary_plan, subsidiary: subsidiary)
+        plan = create(:plan, name: 'Premium')
+        create(:subsidiary_plan, subsidiary: subsidiary, plan: plan, final_price: 99.99, status: :available)
 
         get "/api/v1/subsidiaries/#{subsidiary.id}"
-
         response_json = JSON.parse(response.body, symbolize_names: true)
         expect(response).to be_ok
         expect(response_json[:name]).to eq(subsidiary.name)
-        expect(response_json[:subsidiary_plans][0][:id]).to eq(subsidiary.subsidiary_plans.first.id)
+        expect(response_json[:id]).to eq(subsidiary.id)
+        expect(response_json[:subsidiary_plans][0][:name]).to eq('Premium')
+        expect(response_json[:subsidiary_plans][0][:final_price]).to eq('99.99')
+        expect(response_json[:subsidiary_plans][0][:status]).to eq('available')
       end
     end
 
