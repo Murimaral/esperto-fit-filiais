@@ -13,7 +13,7 @@ class SubsidiariesController < ApplicationController
 
   def create
     @subsidiary = Subsidiary.new(subsidiary_params)
-
+    @subsidiary.images.attach(params[:subsidiary][:images])
     if @subsidiary.save
       redirect_to @subsidiary, notice: t('controllers.subsidiary.created')
     else
@@ -22,9 +22,11 @@ class SubsidiariesController < ApplicationController
     end
   end
 
+  def update; end
+
   private
 
   def subsidiary_params
-    params.require(:subsidiary).permit(:name, :address, :cnpj)
+    params.require(:subsidiary).permit(:name, :address, :cnpj, images: [])
   end
 end
