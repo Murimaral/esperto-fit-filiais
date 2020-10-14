@@ -4,7 +4,7 @@
 <ul>
   <% @enrollments.each do |enrollment| %>
     <li>
-      <%= link_to enrollment.customer_name, subsidiary_enrollment_path(enrollment.subsidiary.id, enrollment.id) %>
+      <%= link_to enrollment.customer_name, [enrollment.subsidiary, enrollment] %>
       <%= enrollment.token %>
       <%= enrollment.customer_cpf %>
     </li>
