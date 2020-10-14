@@ -6,9 +6,8 @@ class Api::V1::SubsidiariesController < Api::V1::ApiController
 
   def show
     @subsidiary = Subsidiary.find(params[:id])
-    
-    render json: @subsidiary.as_json(include: :subsidiary_plans) if @subsidiary
 
+    render json: @subsidiary.as_json(include: :subsidiary_plans) if @subsidiary
   rescue ActiveRecord::RecordNotFound
     render status: :not_found, json: 'Filial não encontrada'
   end
