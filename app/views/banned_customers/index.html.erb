@@ -1,0 +1,16 @@
+<% if @banned_customers.empty? %>
+  <p>Não há clientes banidos.</p>
+<% else %>
+  <table>
+    <tr>
+      <th><%= BannedCustomer.human_attribute_name(:cpf) %></th>
+      <th><%= BannedCustomer.human_attribute_name(:user) %></th>
+    </tr>
+    <% @banned_customers.each do |banned_customer| %>
+      <tr>
+        <td><%= link_to banned_customer.cpf, [banned_customer.subsidiary, banned_customer] %></td>
+        <td><%= banned_customer.user.email %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
