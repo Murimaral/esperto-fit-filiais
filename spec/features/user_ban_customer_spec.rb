@@ -6,8 +6,9 @@ feature 'User bans customer' do
   scenario 'successfully' do
     user = create(:user)
     subsidiary = create(:subsidiary)
+    subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     create(:profile, user: user, subsidiary: subsidiary)
-    enrollment = create(:enrollment)
+    enrollment = create(:enrollment, subsidiary_plan: subsidiary_plan)
     allow_any_instance_of(BannedCustomer).to receive(:send_data_to_customers_api).and_return(true)
 
     login_as user
@@ -39,7 +40,8 @@ feature 'User bans customer' do
   scenario 'and reason is not filled' do
     user = create(:user)
     subsidiary = create(:subsidiary)
-    enrollment = create(:enrollment)
+    subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
+    enrollment = create(:enrollment, subsidiary_plan: subsidiary_plan)
 
     login_as user
     visit subsidiary_path(subsidiary)
@@ -55,7 +57,8 @@ feature 'User bans customer' do
   scenario 'and fails to send data to customers api' do
     user = create(:user)
     subsidiary = create(:subsidiary)
-    enrollment = create(:enrollment)
+    subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
+    enrollment = create(:enrollment, subsidiary_plan: subsidiary_plan)
     allow_any_instance_of(BannedCustomer).to receive(:send_data_to_customers_api).and_return(false)
 
     login_as user
