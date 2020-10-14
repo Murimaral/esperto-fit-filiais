@@ -26,6 +26,14 @@
 </dl>
 <% end %>
 
+<h4>Fotos da filial</h4>
+
+<% if @subsidiary.images.attached? %>
+ <% @subsidiary.images.each do |image| %>
+  <%= image_tag(image) %>
+ <% end %>
+<% end %>
+
 <%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %>
 
 <%= link_to 'Voltar', subsidiaries_path %>
