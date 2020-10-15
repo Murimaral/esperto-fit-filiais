@@ -1,3 +1,6 @@
+<%= link_to 'Home', root_path %>
+<%= link_to 'Voltar', enrollments_path %>
+
 <dl>
   <dt><%= Enrollment.human_attribute_name(:name) %></dt>
   <dd><%= @enrollment.customer_name %></dd>
@@ -16,3 +19,8 @@
   <dt><%= Enrollment.human_attribute_name(:price) %></dt>
   <dd><%= number_to_currency @enrollment.price %></dd>
 </dl>
+
+<% if @enrollment.active? %>
+  <%= link_to 'Cancelar matrícula', enrollment_cancel_path(@enrollment.id), method: :patch,
+                                    data: { confirm: "Deseja cancelar a matrícula #{@enrollment.token} ?" } %>
+<% end %>

@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
     t.string "full_name"
     t.string "cpf"
     t.text "address"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "subsidiary_id"
