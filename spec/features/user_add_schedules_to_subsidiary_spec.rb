@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User adds schedule to subsidiary' do
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
 
     login_as user
@@ -28,7 +28,7 @@ feature 'User adds schedule to subsidiary' do
   end
 
   scenario 'and does not fill a field' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
 
     login_as user
@@ -49,7 +49,7 @@ feature 'User adds schedule to subsidiary' do
   end
 
   scenario 'and already has a schedule' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     create(:schedule, monday: '06:00 - 22:30', subsidiary: subsidiary)
 

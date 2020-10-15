@@ -31,7 +31,7 @@ feature 'User sign in' do
   end
 
   scenario 'and sign out' do
-    user = create(:user)
+    user = create(:user, role: :employee)
 
     login_as(user, scope: :user)
     visit root_path

@@ -4,7 +4,7 @@ feature 'User views banned customers' do
   include ActiveSupport::Testing::TimeHelpers
 
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     create(:profile, user: user, subsidiary: subsidiary)
     create(:banned_customer, cpf: '435.955.239-46', user: user)
@@ -39,7 +39,7 @@ feature 'User views banned customers' do
   end
 
   scenario 'and are no banned customers' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
 
     login_as user
@@ -68,7 +68,7 @@ feature 'User views banned customers' do
 
   scenario 'and view only banned customer users subsidiary' do
     subsidiary = create(:subsidiary, name: 'Carioca')
-    user = create(:user)
+    user = create(:user, role: :employee)
     create(:profile, user: user, subsidiary: subsidiary)
     create(:banned_customer, cpf: '435.955.239-46', user: user)
     create(:banned_customer, cpf: '787.057.058-35', user: user)
