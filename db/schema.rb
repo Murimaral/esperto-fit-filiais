@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_040335) do
+ActiveRecord::Schema.define(version: 2020_10_14_224033) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -88,6 +88,21 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.integer "subsidiary_id", null: false
+    t.string "monday"
+    t.string "tuesday"
+    t.string "wednesday"
+    t.string "thursday"
+    t.string "friday"
+    t.string "saturday"
+    t.string "sunday"
+    t.string "holidays"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subsidiary_id"], name: "index_schedules_on_subsidiary_id", unique: true
+  end
+
   create_table "subsidiaries", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -130,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_040335) do
   add_foreign_key "enrollments", "subsidiary_plans"
   add_foreign_key "profiles", "subsidiaries"
   add_foreign_key "profiles", "users"
+  add_foreign_key "schedules", "subsidiaries"
   add_foreign_key "subsidiary_plans", "plans"
   add_foreign_key "subsidiary_plans", "subsidiaries"
 end
