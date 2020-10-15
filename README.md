@@ -60,20 +60,19 @@ Things you may want to cover:
 
 ```json
 {
-  "data": {
-    "id": 3,
-    "name": "Lorem1",
-    "address": "R. Lorem Ipsum, XXX, Lorem, Ipsum",
-    "cnpj": "58.520.759/8766-09",
-    "token": "X2VBDD",
-    "subsidiary_plans": [
-      {
-        "name": "Plano1",
-        "final_price": "9.99",
-        "status": "unavailable"
-      }
-    ]
-  }
+  "id": 3,
+  "name": "Lorem1",
+  "address": "R. Lorem Ipsum, XXX, Lorem, Ipsum",
+  "cnpj": "58.520.759/8766-09",
+  "token": "X2VBDD",
+  "subsidiary_plans": [
+    {
+      "name": "Plano1",
+      "price": "9.99",
+      "status": "available",
+      "permanency": "12 months"
+    }
+  ]
 }
 ```
 
