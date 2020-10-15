@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature 'Admin creates user' do
   scenario 'successfully' do
-    admin = create(:user)
+    admin = create(:user, profile: nil)
     subsidiary = create(:subsidiary)
+    
     login_as admin
-
     visit root_path
     click_on 'Gerenciar funcionários'
     click_on 'Novo funcionário'

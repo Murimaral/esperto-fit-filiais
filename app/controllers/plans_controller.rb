@@ -1,5 +1,7 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update]
+  before_action :must_be_admin, only: %i[index new create show edit update]
+
   def index
     @plans = Plan.all
   end
