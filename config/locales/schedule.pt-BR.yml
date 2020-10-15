@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  schedules:
+    create:
+      success: Horários definidos com sucesso
+      fail: Não foi possível definir horários
   activerecord:
     models:
       schedule:

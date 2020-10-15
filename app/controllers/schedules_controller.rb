@@ -1,26 +1,28 @@
 class SchedulesController < ApplicationController
-  def show
-    @subsidiary = Subsidiary.find(params[:subsidiary_id])
-  end
+  before_action :set_subsidiary, only: %i[show new create]
+
+  def show; end
 
   def new
-    @subsidiary = Subsidiary.find(params[:subsidiary_id])
     @schedule = @subsidiary.build_schedule
   end
 
   def create
-    @subsidiary = Subsidiary.find(params[:subsidiary_id])
     @schedule = @subsidiary.build_schedule(schedule_params)
 
     if @schedule.save
-      redirect_to subsidiary_schedule_path(@subsidiary), notice: 'Horários definidos com sucesso'
+      redirect_to subsidiary_schedule_path(@subsidiary), notice: t('.success')
     else
-      flash.now[:alert] = 'Não foi possível definir horários'
+      flash.now[:alert] = t('.fail')
       render :new
     end
   end
 
   private
+
+  def set_subsidiary
+    @subsidiary = Subsidiary.find(params[:subsidiary_id])
+  end
 
   def schedule_params
     params.require(:schedule).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :holidays)
