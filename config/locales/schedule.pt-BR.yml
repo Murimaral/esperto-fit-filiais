@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      schedule:
+        one: Horários de atendimento
+    attributes:
+      schedule:
+        monday: Segunda
+        tuesday: Terça
+        wednesday: Quarta
+        thursday: Quinta
+        friday: Sexta
+        saturday: Sábado
+        sunday: Domingo
+        holidays: Feriados
