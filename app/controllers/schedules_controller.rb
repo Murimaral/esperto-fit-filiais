@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
-  before_action :set_subsidiary, only: %i[show new create]
+  before_action :set_subsidiary, only: %i[show new create edit update]
+  before_action :set_schedule, only: %i[edit update]
 
   def show; end
 
@@ -18,10 +19,27 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def edit
+    redirect_to subsidiary_schedule_path(@subsidiary) unless @schedule
+  end
+
+  def update
+    if @schedule.update(schedule_params)
+      redirect_to subsidiary_schedule_path(@subsidiary), notice: t('.success')
+    else
+      flash.now[:alert] = t('.fail')
+      render :edit
+    end
+  end
+
   private
 
   def set_subsidiary
     @subsidiary = Subsidiary.find(params[:subsidiary_id])
+  end
+
+  def set_schedule
+    @schedule = @subsidiary.schedule
   end
 
   def schedule_params

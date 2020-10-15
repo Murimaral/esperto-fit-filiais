@@ -8,6 +8,7 @@
   <p><%= "#{Schedule.human_attribute_name :saturday}: #{@subsidiary.schedule.saturday}" %></p>
   <p><%= "#{Schedule.human_attribute_name :sunday}: #{@subsidiary.schedule.sunday}" %></p>
   <p><%= "#{Schedule.human_attribute_name :holidays}: #{@subsidiary.schedule.holidays}" %></p>
+  <%= link_to 'Alterar horários', edit_subsidiary_schedule_path(@subsidiary) %>
 <% else %>
   <p>Ainda não há horários cadastrados na sua filial. <%= link_to 'Clique aqui para defini-los agora', new_subsidiary_schedule_path(@subsidiary) %></p>
 <% end %>

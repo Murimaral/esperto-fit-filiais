@@ -4,6 +4,9 @@ pt-BR:
     create:
       success: Horários definidos com sucesso
       fail: Não foi possível definir horários
+    update:
+      success: Horários alterados com sucesso
+      fail: Não foi possível alterar horários
   activerecord:
     models:
       schedule:
