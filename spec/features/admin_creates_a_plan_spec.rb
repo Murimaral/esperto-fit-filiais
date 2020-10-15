@@ -15,7 +15,7 @@ feature 'Admin creates a plan' do
     fill_in 'Nome', with: 'Premium'
     fill_in 'Preço padrão', with: '100.00'
     fill_in 'Permanência mínima', with: '6'
-    click_on 'Criar plano'
+    click_on 'Enviar'
 
     expect(page).to have_link('Voltar', href: plans_path)
     expect(page).to have_content('Premium')
@@ -33,7 +33,7 @@ feature 'Admin creates a plan' do
     fill_in 'Nome', with: ''
     fill_in 'Preço padrão', with: ''
     fill_in 'Permanência mínima', with: ''
-    click_on 'Criar plano'
+    click_on 'Enviar'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
   end
@@ -49,7 +49,7 @@ feature 'Admin creates a plan' do
     fill_in 'Nome', with: 'Premium'
     fill_in 'Preço padrão', with: '100.00'
     fill_in 'Permanência mínima', with: '12'
-    click_on 'Criar plano'
+    click_on 'Enviar'
 
     expect(page).to have_content('Nome já está em uso')
   end
@@ -64,7 +64,7 @@ feature 'Admin creates a plan' do
     fill_in 'Nome', with: 'Premium'
     fill_in 'Preço padrão', with: '-1.00'
     fill_in 'Permanência mínima', with: '-10'
-    click_on 'Criar plano'
+    click_on 'Enviar'
 
     expect(page).to have_content('Preço padrão deve ser maior que 0')
     expect(page).to have_content('Permanência mínima deve ser maior que 0')

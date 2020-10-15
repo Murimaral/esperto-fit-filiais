@@ -1,6 +1,7 @@
 class EnrollmentsController < ApplicationController
   def index
-    @enrollments = Enrollment.all
+    @subsidiary = Subsidiary.find(params[:subsidiary_id])
+    @enrollments = @subsidiary.enrollments
   end
 
   def show
