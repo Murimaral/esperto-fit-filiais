@@ -35,7 +35,7 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and there are no subsidiaries' do
-    user = create(:user)
+    user = create(:user, profile: nil)
 
     login_as user
     visit root_path
@@ -80,5 +80,15 @@ feature 'Admin view subsidiaries' do
     click_on 'Voltar'
 
     expect(current_path).to eq(root_path)
+  end
+
+  scenario 'and must be admin to view index' do
+    user = create(:user, role: :employee)
+
+    login_as user
+    visit subsidiaries_path
+
+    expect(current_path).to_not eq subsidiaries_path
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
   end
 end
