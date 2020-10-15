@@ -21,6 +21,7 @@
 </dl>
 
 <% if @enrollment.active? %>
-  <%= link_to 'Cancelar matrícula', enrollment_cancel_path(@enrollment.id), method: :patch,
+  <%= link_to 'Cancelar matrícula', enrollment_cancel_path(@enrollment), method: :patch,
                                     data: { confirm: "Deseja cancelar a matrícula #{@enrollment.token} ?" } %>
 <% end %>
+<%= link_to 'Banir cliente', new_enrollment_banned_customer_path(@enrollment) %>

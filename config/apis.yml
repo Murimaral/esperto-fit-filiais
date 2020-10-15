@@ -1,0 +1,8 @@
+test:
+  customers: https://customers/api/v1
+
+development:
+  customers: https://localhost:4000/api/v1
+
+production:
+  customers: https://customers.espertofit.com.br/api/v1
