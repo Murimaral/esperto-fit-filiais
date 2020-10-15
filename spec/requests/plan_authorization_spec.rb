@@ -17,7 +17,7 @@ describe 'Plan authorization' do
 
   it 'must be authenticated to edit' do
     plan = create(:plan)
-    
+
     patch "/plans/#{plan.id}", params: { plan: attributes }
 
     expect(response).to redirect_to(new_user_session_path)

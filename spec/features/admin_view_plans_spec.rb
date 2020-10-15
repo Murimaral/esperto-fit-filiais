@@ -53,6 +53,6 @@ feature 'admin view plans' do
     visit plan_path(plan)
 
     expect(current_path).not_to eq(plan_path(plan))
-    expect(current_path).to eq(subsidiary_path(user.subsidiary)) 
+    expect(current_path).to eq(subsidiary_path(user.subsidiary))
   end
 end

@@ -4,7 +4,7 @@ feature 'Admin creates user' do
   scenario 'successfully' do
     admin = create(:user, profile: nil)
     subsidiary = create(:subsidiary)
-    
+
     login_as admin
     visit root_path
     click_on 'Gerenciar funcionários'
