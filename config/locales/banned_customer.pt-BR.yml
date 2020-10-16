@@ -1,0 +1,19 @@
+---
+pt-BR:
+  banned_customers:
+    create:
+      success: Cliente banido com sucesso
+      fail: Falha ao banir cliente
+      api_fail: Falha ao banir cliente. Não foi possível comunicar o sistema de clientes. Tente novamente mais tarde
+  activerecord:
+    models:
+      banned_customer:
+        one: Cliente banido
+        other: Clientes banidos
+    attributes:
+      banned_customer:
+        reason: Motivo
+        cpf: CPF banido
+        banned_at: Data
+        user: Responsável
+        user_id: Responsável

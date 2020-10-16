@@ -9,7 +9,8 @@
   <dd><%= @subsidiary.token %></dd>
 </dl>
 
-<%= link_to 'Gerenciar matrículas', enrollments_path %>
+<%= link_to 'Gerenciar matrículas', subsidiary_enrollments_path(@subsidiary) %>
+<%= link_to 'Gerenciar horários', subsidiary_schedule_path(@subsidiary) %>
 
 <h3>Planos disponíveis:</h3>
 
@@ -26,6 +27,14 @@
 </dl>
 <% end %>
 
-<%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %>
+<p><%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %></p>
+<%= link_to 'Gerenciar banimentos', subsidiary_banned_customers_path(@subsidiary) %>
+<h4>Fotos da filial</h4>
+
+<% if @subsidiary.images.attached? %>
+ <% @subsidiary.images.each do |image| %>
+  <%= image_tag(image) %>
+ <% end %>
+<% end %>
 
 <%= link_to 'Voltar', subsidiaries_path %>

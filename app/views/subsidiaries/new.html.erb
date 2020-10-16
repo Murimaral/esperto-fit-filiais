@@ -14,5 +14,8 @@
   <%= f.text_field :cnpj %>
   <%= f.label :address %>
   <%= f.text_field :address %>
+  <%= f.label :images %>
+  <%= f.file_field :images, multiple: true %>
+  </div>
   <%= f.submit %>
 <% end %>

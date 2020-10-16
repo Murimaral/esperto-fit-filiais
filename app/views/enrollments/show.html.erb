@@ -16,3 +16,5 @@
   <dt><%= Enrollment.human_attribute_name(:price) %></dt>
   <dd><%= number_to_currency @enrollment.price %></dd>
 </dl>
+
+<%= link_to 'Banir cliente', new_enrollment_banned_customer_path(@enrollment) %>

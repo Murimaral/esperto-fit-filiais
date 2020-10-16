@@ -10,7 +10,7 @@
 <ul>
   <% @enrollments.each do |enrollment| %>
     <li>
-      <%= link_to enrollment.customer_name, enrollment %>
+      <%= link_to enrollment.customer_name, subsidiary_enrollment_path(enrollment.subsidiary.id, enrollment.id) %>
       <%= enrollment.token %>
       <%= enrollment.customer_cpf %>
     </li>
