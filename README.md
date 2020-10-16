@@ -34,22 +34,22 @@ Things you may want to cover:
 ```json
 [
   {
-    "id":1,
-    "name":"Lorem1",
-    "address":"R. Lorem Ipsum, XXX, Lorem, Ipsum",
-    "created_at":"2020-10-07T15:38:01.558Z",
-    "updated_at":"2020-10-07T15:38:01.558Z",
-    "cnpj":"73.590.707/9101-24",
-    "token":"9F7IYV"
+    "id": 3,
+    "name": "Lorem1",
+    "address": "R. Lorem Ipsum, XXX, Lorem, Ipsum",
+    "created_at": "2020-10-13T20:28:59.920Z",
+    "updated_at": "2020-10-13T20:28:59.920Z",
+    "cnpj": "58.520.759/8766-09",
+    "token": "X2VBDD"
   },
   {
-    "id":2,
-    "name":"Lorem2",
-    "address":"R. Lorem Ipsum, XXX, Lorem, Ipsum",
-    "created_at":"2020-10-07T15:38:01.563Z",
-    "updated_at":"2020-10-07T15:38:01.563Z",
-    "cnpj":"86.837.657/2840-59",
-    "token":"CK4XEB"
+    "id": 4,
+    "name": "Lorem10",
+    "address": "R. Lorem Ipsum, XXX, Lorem, Ipsum",
+    "created_at": "2020-10-14T19:47:08.649Z",
+    "updated_at": "2020-10-14T19:47:08.649Z",
+    "cnpj": "02.124.357/9633-63",
+    "token": "PUXCOX"
   }
 ]
 ```
@@ -69,7 +69,6 @@ Things you may want to cover:
     {
       "name": "Plano1",
       "price": "9.99",
-      "status": "available",
       "permanency": "12 months"
     }
   ]

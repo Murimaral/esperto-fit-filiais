@@ -47,7 +47,6 @@ describe 'Api subsidiary' do
         expect(response_json[:id]).to eq(subsidiary.id)
         expect(response_json[:subsidiary_plans][0][:name]).to eq('Premium')
         expect(response_json[:subsidiary_plans][0][:price]).to eq('99.99')
-        expect(response_json[:subsidiary_plans][0][:status]).to eq('available')
         expect(response.body).not_to include('Básico')
       end
     end

@@ -19,13 +19,10 @@ class SubsidiarySerializers::Show
   attr_reader :subsidiary
 
   def subsidiary_plans_info(subsidiary)
-    subsidiary.subsidiary_plans.map do |item|
-      next unless item.available?
-
+    subsidiary.subsidiary_plans.available.map do |item|
       {
         name: item.plan.name,
         price: item.final_price,
-        status: item.status,
         permanency: "#{item.plan.minimum_period} months"
       }
     end
