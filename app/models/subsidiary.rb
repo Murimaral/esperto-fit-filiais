@@ -1,8 +1,10 @@
 class Subsidiary < ApplicationRecord
   has_many :profiles, dependent: :destroy
   has_many :subsidiary_plans, dependent: :destroy
+  has_many :subsidiary_products, dependent: :destroy
   has_many :enrollments, through: :subsidiary_plans
   has_many :plans, through: :subsidiary_plans
+  has_many :products, through: :subsidiary_products
   has_many :users, through: :profiles
   has_many :banned_customers, through: :users
   has_one :schedule, dependent: :destroy
