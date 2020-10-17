@@ -1,0 +1,21 @@
+#home-index {
+  .home-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    font-size: 1.4rem;
+    width: 100%;
+    height: 240px;
+    margin: 6px;
+    color: #fff;
+    background-color: #343a40;
+  }
+
+  .home-link:hover {
+    opacity: 0.9;
+    text-decoration: none;
+    box-shadow: none !important;
+  }
+}
