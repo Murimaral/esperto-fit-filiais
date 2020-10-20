@@ -2,25 +2,25 @@
 
 O Esperto Fit ilustra uma aplicação web utilizando Ruby on Rails, onde faz a gestão de uma rede de academias. A parte de Filiais no caso, cuida da gestão de filiais, planos, matrículas, produtos, alunos banidos e agenda de cada academia.
 
-Começando:
+## Começando:
 
 Para executar esse projeto, será necessário instalar os seguintes programas:
   * ruby 2.7.1
   * rails 6.0.3.4
   * yarn 1.22.4
 
-Desenvolvimento:
+## Desenvolvimento:
 
 Para iniciar o desenvolvimento, é necessário clonar o projeto GitHub em algum diretório:
   * git@github.com:TreinaDev/esperto-fit-filiais.git
 
-Construção:
+## Construção:
 
 Para construir o projeto você deve executar o seguinte comando no diretório escolhido:
   * bin/setup
 
 
-Features:
+## Features:
 
 O projeto segue uma linha onde filiais se cadastram no sistema e passam a cuidar da gestão de sua filial.
   * O administrador do sistema, pode fazer a gestão geral de: planos, filiais, matrículas, produtos, alunos banidos e agenda de cada filial;
@@ -31,7 +31,7 @@ O projeto segue uma linha onde filiais se cadastram no sistema e passam a cuidar
   * Usuários regulares do sistema podem banir alunos enviando uma justificativa;
   * Os horários de funcionamento de cada filial pode ser alterado por seus usuários.
 
-Testes:
+## Testes:
 
 Para executar os testes, será necessário instalar as seguintes gems:
   * gem 'capybara'
@@ -40,7 +40,7 @@ Para executar os testes, será necessário instalar as seguintes gems:
 Para executar os restes, utilize o comando:
   * rspec
 
-Gems:
+## Gems:
 
 Algumas gems foram incluídas no projeto:
   * gem 'cpf_cnpj'
