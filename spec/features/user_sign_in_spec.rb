@@ -27,7 +27,7 @@ feature 'User sign in' do
 
     expect(current_path).to eq root_path
     expect(page).to have_content('Login efetuado com sucesso')
-    expect(page).to have_content('EspertoFit Dashboard')
+    expect(page).to have_content('Painel de controle')
   end
 
   scenario 'and sign out' do

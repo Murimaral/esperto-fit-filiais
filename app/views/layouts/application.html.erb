@@ -10,11 +10,16 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <p><%= link_to 'Sair', destroy_user_session_path, method: :delete%></p>
+    <%= render 'shared/navbar' %>
+    
+    <% flash.each do |key, value| %>
+      <p class="<%= flash_class(key)%> alert text-center">
+        <%= value %>
+      </p>
     <% end %>
-    <%= yield %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
