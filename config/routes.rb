@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :subsidiaries, only: %i[index show]
       resources :enrollments, only: %i[create]
+      get '/banned_customer/:cpf', to: 'banned_customers#show', as: 'banned_customer'
     end
   end
 end
