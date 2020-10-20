@@ -27,7 +27,23 @@
 </dl>
 <% end %>
 
+<h3>Produtos disponíveis:</h3>
+
+<% @subsidiary.subsidiary_products.each do |subsidiary_product| %>
+  <dl>
+  <dt><%= Product.human_attribute_name(:name) %></dt>
+  <dd><%= subsidiary_product.product.name %></dd>
+  <dt><%= Product.human_attribute_name(:description) %></dt>
+  <dd><%= subsidiary_product.product.description %> </dd>
+  <dt><%= SubsidiaryProduct.human_attribute_name(:final_price) %></dt>
+  <dd><%= number_to_currency subsidiary_product.final_price %></dd>
+  <dt><%= SubsidiaryProduct.human_attribute_name(:status) %></dt>
+  <dd><%= SubsidiaryProduct.human_attribute_name("status.#{subsidiary_product.status}") %></dd>
+</dl>
+<% end %>
+
 <p><%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %></p>
+<p><%= link_to 'Cadastrar produto',new_subsidiary_subsidiary_product_path(@subsidiary.id) %></p>
 <%= link_to 'Gerenciar banimentos', subsidiary_banned_customers_path(@subsidiary) %>
 <h4>Fotos da filial</h4>
 

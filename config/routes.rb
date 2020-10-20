@@ -4,11 +4,17 @@ Rails.application.routes.draw do
 
   resources :enrollments, only: %i[index show] do
     resources :banned_customers, only: %i[new create]
+    get 'search', on: :collection
   end
   resources :plans, only: %i[index new create show edit update]
   resources :profiles, only: %i[index show new create]
+  resources :enrollments, only: %i[index show] do
+    patch 'cancel', on: :member
+    resources :banned_customers, only: %i[new create]
+  end
   resources :subsidiaries, only: %i[index show new create] do
     resources :subsidiary_plans, only: %i[new create]
+    resources :subsidiary_products, only: %i[new create]
     resources :enrollments, only: %i[index show]
     resources :banned_customers, only: %i[show index]
     resource :schedule, only: %i[show new create edit update]
@@ -17,8 +23,9 @@ Rails.application.routes.draw do
 
   namespace :api, constraints: { format: :json } do
     namespace :v1 do
-      resources :subsidiaries, only: %i[index]
+      resources :subsidiaries, only: %i[index show]
       resources :enrollments, only: %i[create]
+      get '/banned_customer/:cpf', to: 'banned_customers#show', as: 'banned_customer'
     end
   end
 end

@@ -1,3 +1,9 @@
+<%= form_with url: search_enrollments_path, method: :get, local: true do |f| %>
+  <%= f.label :q, 'Busca de matrículas' %>
+  <%= f.text_field :q %>
+  <%= f.submit 'Buscar' %>
+<% end %>
+
 <% if @enrollments.empty? %>
   <h3>Não há matriculas cadastradas.</h3>
 <% end %>

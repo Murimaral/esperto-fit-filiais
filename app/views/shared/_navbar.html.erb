@@ -1,0 +1,9 @@
+<nav class="navbar navbar-dark bg-dark px-4">
+  <a class="navbar-brand" href="<%= root_path %>">
+    <%= image_tag 'logo.svg', width: '90', class: "d-inline-block" %>
+  </a>
+  <% if user_signed_in? %>
+    <span class="ml-auto mr-4 my-auto d-inline-block text-white font-weight-bold"><%= current_user.profile ? current_user.profile.full_name : current_user.email %></span>
+    <span class="my-auto d-inline-block"><%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'text-white' %></span>
+  <% end %>
+</nav>
