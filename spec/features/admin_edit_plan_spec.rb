@@ -87,4 +87,15 @@ feature 'Admin edit plan' do
 
     expect(page).to have_content('Nome já está em uso')
   end
+
+  scenario 'and must be admin' do
+    user = create(:user, role: :employee)
+    plan = create(:plan)
+
+    login_as user
+    visit edit_plan_path(plan)
+
+    expect(current_path).not_to eq(edit_plan_path(plan))
+    expect(current_path).to eq(subsidiary_path(user.subsidiary))
+  end
 end

@@ -34,4 +34,25 @@ feature 'admin view plans' do
 
     expect(current_path).to eq new_user_session_path
   end
+
+  scenario 'and must be admin to view index' do
+    user = create(:user, role: :employee)
+
+    login_as user
+    visit plans_path
+
+    expect(current_path).not_to eq(plans_path)
+    expect(current_path).to eq(subsidiary_path(user.subsidiary))
+  end
+
+  scenario 'and must be admin to view show' do
+    user = create(:user, role: :employee)
+    plan = create(:plan)
+
+    login_as user
+    visit plan_path(plan)
+
+    expect(current_path).not_to eq(plan_path(plan))
+    expect(current_path).to eq(subsidiary_path(user.subsidiary))
+  end
 end

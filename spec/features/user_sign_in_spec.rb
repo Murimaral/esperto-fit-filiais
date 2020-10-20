@@ -6,7 +6,19 @@ feature 'User sign in' do
   end
 
   scenario 'successfully' do
-    create(:user, email: 'teste@espertofit.com.br')
+    user = create(:user, email: 'teste@espertofit.com.br', role: :employee)
+
+    visit root_path
+    fill_in 'Email', with: 'teste@espertofit.com.br'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
+
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
+    expect(page).to have_content('Login efetuado com sucesso')
+  end
+
+  scenario 'successfully as admin' do
+    create(:user, email: 'teste@espertofit.com.br', password: '123456', role: :admin)
 
     visit root_path
     fill_in 'Email', with: 'teste@espertofit.com.br'
@@ -14,10 +26,12 @@ feature 'User sign in' do
     click_on 'Entrar'
 
     expect(current_path).to eq root_path
+    expect(page).to have_content('Login efetuado com sucesso')
+    expect(page).to have_content('Painel de controle')
   end
 
   scenario 'and sign out' do
-    user = create(:user)
+    user = create(:user, role: :employee)
 
     login_as(user, scope: :user)
     visit root_path

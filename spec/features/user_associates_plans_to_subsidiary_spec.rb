@@ -1,6 +1,6 @@
 feature 'User associates plans to subsidiary' do
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary, name: 'Lorem Gym')
     create(:plan, name: 'Premium')
 
@@ -23,7 +23,7 @@ feature 'User associates plans to subsidiary' do
   end
 
   scenario 'and must not be blank' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary, name: 'Lorem Gym')
     create(:plan, name: 'Premium')
 
@@ -46,7 +46,7 @@ feature 'User associates plans to subsidiary' do
   end
 
   scenario 'and used plans must not show to select' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     plan = create(:plan, name: 'Básico')
     create(:plan, name: 'Premium')
     subsidiary = create(:subsidiary)

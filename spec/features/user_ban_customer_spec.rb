@@ -4,7 +4,7 @@ feature 'User bans customer' do
   include ActiveSupport::Testing::TimeHelpers
 
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     create(:profile, user: user, subsidiary: subsidiary)
@@ -38,7 +38,7 @@ feature 'User bans customer' do
   end
 
   scenario 'and reason is not filled' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     enrollment = create(:enrollment, subsidiary_plan: subsidiary_plan)
@@ -55,7 +55,7 @@ feature 'User bans customer' do
   end
 
   scenario 'and fails to send data to customers api' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     enrollment = create(:enrollment, subsidiary_plan: subsidiary_plan)

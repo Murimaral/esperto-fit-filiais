@@ -1,7 +1,7 @@
 
 include FactoryBot::Syntax::Methods
 create(:user, email: 'admin@espertofit.com.br', password: '12345678', role: :admin)
-create(:user, email: 'user@espertofit.com.br', password: '12345678', role: :employee)
+
 
 
 FactoryBot.create_list(:subsidiary, 3) do |subsidiary|

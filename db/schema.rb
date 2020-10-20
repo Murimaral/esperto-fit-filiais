@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_002453) do
   create_table "banned_customers", force: :cascade do |t|
     t.text "reason", null: false
     t.datetime "banned_at", null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.string "cpf", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_002453) do
     t.string "full_name"
     t.string "cpf"
     t.text "address"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "subsidiary_id"

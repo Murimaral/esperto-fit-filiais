@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User edits subsidiary schedule' do
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     create(:schedule, subsidiary: subsidiary)
 
@@ -19,7 +19,7 @@ feature 'User edits subsidiary schedule' do
   end
 
   scenario 'and leaves a blank field' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     create(:schedule, subsidiary: subsidiary)
 
@@ -34,7 +34,7 @@ feature 'User edits subsidiary schedule' do
   end
 
   scenario 'and there is no defined schedule' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
 
     login_as user
