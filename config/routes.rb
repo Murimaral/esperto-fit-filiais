@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :plans, only: %i[index new create show edit update]
   resources :profiles, only: %i[index show new create]
   resources :enrollments, only: %i[index show] do
-    patch 'cancel', to: 'enrollments#cancel'
+    patch 'cancel', on: :member
     resources :banned_customers, only: %i[new create]
   end
   resources :subsidiaries, only: %i[index show new create] do

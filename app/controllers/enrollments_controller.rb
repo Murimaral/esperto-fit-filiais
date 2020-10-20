@@ -9,7 +9,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def cancel
-    @enrollment = Enrollment.find(params[:enrollment_id])
+    @enrollment = Enrollment.find(params[:id])
     @enrollment.canceled!
     redirect_to @enrollment
   end

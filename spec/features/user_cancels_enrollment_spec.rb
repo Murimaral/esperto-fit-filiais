@@ -15,6 +15,6 @@ feature 'User cancels enrollment' do
     expect(page).to have_content(enrollment.email)
     expect(page).to have_content(enrollment.subsidiary_plan.plan.name)
     expect(page).to have_content('Cancelada')
-    expect(page).to_not have_link('Cancelar matrícula', href: enrollment_cancel_path(enrollment))
+    expect(page).to_not have_link('Cancelar matrícula', href: cancel_enrollment_path(enrollment))
   end
 end
