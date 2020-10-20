@@ -1,0 +1,21 @@
+---
+pt-BR:
+  subsidiary_products:
+    create:
+      created: 'Produto cadastrado com sucesso!'
+      not_created: 'Não foi possível cadastrar produto'
+  activerecord:
+    models:
+      subsiadiary_product:
+        one: 'Produto da filial'
+        other: 'Produtos da filial'
+    attributes:
+      subsidiary_product:
+        product_id: 'Produto'
+        final_price: 'Preço final'
+        subsiadiary: 'Filial'
+        status: 'Status'
+      subsidiary_product/status:
+        unavailable: 'Indisponível'
+        available: 'Disponível'
+    

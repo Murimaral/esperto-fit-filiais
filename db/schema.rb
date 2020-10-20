@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_224033) do
+ActiveRecord::Schema.define(version: 2020_10_16_002453) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_224033) do
     t.string "full_name"
     t.string "cpf"
     t.text "address"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "subsidiary_id"
@@ -127,6 +127,18 @@ ActiveRecord::Schema.define(version: 2020_10_14_224033) do
     t.index ["subsidiary_id"], name: "index_subsidiary_plans_on_subsidiary_id"
   end
 
+  create_table "subsidiary_products", force: :cascade do |t|
+    t.integer "subsidiary_id", null: false
+    t.integer "product_id", null: false
+    t.integer "status", default: 0
+    t.decimal "final_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id", "subsidiary_id"], name: "index_subsidiary_products_on_product_id_and_subsidiary_id", unique: true
+    t.index ["product_id"], name: "index_subsidiary_products_on_product_id"
+    t.index ["subsidiary_id"], name: "index_subsidiary_products_on_subsidiary_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -148,4 +160,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_224033) do
   add_foreign_key "schedules", "subsidiaries"
   add_foreign_key "subsidiary_plans", "plans"
   add_foreign_key "subsidiary_plans", "subsidiaries"
+  add_foreign_key "subsidiary_products", "products"
+  add_foreign_key "subsidiary_products", "subsidiaries"
 end
