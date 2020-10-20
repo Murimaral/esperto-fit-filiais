@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :enrollments, only: %i[index show] do
     resources :banned_customers, only: %i[new create]
+    get 'search', on: :collection
   end
   resources :plans, only: %i[index new create show edit update]
   resources :profiles, only: %i[index show new create]
