@@ -1,4 +1,6 @@
 class SubsidiariesController < ApplicationController
+  before_action :must_be_admin, only: %i[index new create]
+
   def index
     @subsidiaries = Subsidiary.all
   end
@@ -21,8 +23,6 @@ class SubsidiariesController < ApplicationController
       render :new
     end
   end
-
-  def update; end
 
   private
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User views enrollments' do
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     enrollment1 = create(:enrollment, customer_name: 'Lorem Name 1', customer_cpf: '159.422.547-88',
@@ -24,7 +24,7 @@ feature 'User views enrollments' do
   end
 
   scenario 'and view details' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
     subsidiary_plan = create(:subsidiary_plan, subsidiary: subsidiary)
     enrollment = create(:enrollment, status: :active, price: 98.90, subsidiary_plan: subsidiary_plan)
@@ -45,7 +45,7 @@ feature 'User views enrollments' do
   end
 
   scenario 'and there is no enrollment registered' do
-    user = create(:user)
+    user = create(:user, role: :employee)
     subsidiary = create(:subsidiary)
 
     login_as user

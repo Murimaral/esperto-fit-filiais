@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :must_be_admin, only: %i[index show new create]
+
   def index
     @products = Product.all
   end

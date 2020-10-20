@@ -61,4 +61,14 @@ feature 'Admin creates subsidiary' do
     expect(page).to have_content('A filial não foi criada.')
     expect(page).to have_content('CNPJ não é válido')
   end
+
+  scenario 'and must be admin to create' do
+    user = create(:user, role: :employee)
+
+    login_as user
+    visit new_subsidiary_path
+
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
+    expect(current_path).to_not eq new_subsidiary_path
+  end
 end

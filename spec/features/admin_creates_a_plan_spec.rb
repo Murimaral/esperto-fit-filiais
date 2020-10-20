@@ -69,4 +69,14 @@ feature 'Admin creates a plan' do
     expect(page).to have_content('Preço padrão deve ser maior que 0')
     expect(page).to have_content('Permanência mínima deve ser maior que 0')
   end
+
+  scenario 'and must be admin to create' do
+    user = create(:user, role: :employee)
+
+    login_as user
+    visit new_plan_path
+
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
+    expect(current_path).to_not eq new_plan_path
+  end
 end

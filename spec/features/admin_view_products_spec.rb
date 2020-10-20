@@ -63,4 +63,23 @@ feature 'Admin view products' do
 
     expect(current_path).to eq(root_path)
   end
+
+  scenario 'and must be admin index' do
+    user = create(:user, role: :employee)
+
+    login_as user
+    visit products_path
+
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
+  end
+
+  scenario 'and must be admin to view show' do
+    user = create(:user, role: :employee)
+    product = create(:product)
+
+    login_as user
+    visit product_path(product)
+
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
+  end
 end

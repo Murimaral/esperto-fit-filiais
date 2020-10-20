@@ -40,4 +40,13 @@ feature 'Admin create product' do
     expect(page).to have_content('Descrição não pode ficar em branco')
     expect(page).to have_content('Preço mínimo não pode ficar em branco')
   end
+
+  scenario 'and must be admin' do
+    user = create(:user, role: :employee)
+
+    login_as user
+    visit new_product_path
+
+    expect(current_path).to eq subsidiary_path(user.subsidiary)
+  end
 end
