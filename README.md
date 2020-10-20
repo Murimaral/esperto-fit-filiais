@@ -2,8 +2,6 @@
 
 O Esperto Fit ilustra uma aplicação web utilizando Ruby on Rails, onde faz a gestão de uma rede de academias. A parte de Filiais no caso, cuida da gestão de filiais, planos, matrículas, produtos, alunos banidos e agenda de cada academia.
 
-# Além de fazer um cadastro de todos esses modelos, também é possível fazer associações individuais para cada filial, assim permitindo fazer um gerenciamento individual de cada academia por usuários regulares.
-
 Começando:
 
 Para executar esse projeto, será necessário instalar os seguintes programas:
