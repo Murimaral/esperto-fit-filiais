@@ -1,4 +1,15 @@
-<%= link_to 'Gerenciar filiais', subsidiaries_path %>
-<%= link_to 'Gerenciar funcionários', profiles_path %>
-<%= link_to 'Gerenciar produtos', products_path %>
-<%= link_to 'Gerenciar planos', plans_path %>
+<div id="home-index" class="row py-4">
+  <h1 class="w-100 text-center">Painel de controle</h1>
+  <div class="col-lg-3 col-md-6 col-12">
+    <%= link_to 'Gerenciar filiais', subsidiaries_path, class: 'home-link shadow rounded-lg' %>
+  </div>
+  <div class="col-lg-3 col-md-6 col-12">
+    <%= link_to 'Gerenciar funcionários', profiles_path, class: 'home-link shadow rounded-lg' %>
+  </div>
+  <div class="col-lg-3 col-md-6 col-12">
+    <%= link_to 'Gerenciar produtos', products_path, class: 'home-link shadow rounded-lg' %>
+  </div>
+  <div class="col-lg-3 col-md-6 col-12">
+    <%= link_to 'Gerenciar planos', plans_path, class: 'home-link shadow rounded-lg' %>
+  </div>
+</div>

@@ -14,4 +14,10 @@ class EnrollmentsController < ApplicationController
                                     OR customer_name LIKE :search ", { search: "%#{params[:q]}%" })
     render :index
   end
+
+  def cancel
+    @enrollment = Enrollment.find(params[:id])
+    @enrollment.canceled!
+    redirect_to @enrollment
+  end
 end

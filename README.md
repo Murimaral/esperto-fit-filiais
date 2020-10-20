@@ -135,3 +135,18 @@ Parâmetros inválidos
   "CPF do cliente não é válido"
 ]
 ```
+### Consulta de CPF banido
+
+#### GET /api/v1/banned_customer/:cpf
+
+**HTTP status:** 200 (CPF banido)
+
+**HTTP status:** 404 (CPF não encontrado na lista de banidos)
+
+**HTTP status:** 422 (CPF inválido)
+
+```json
+{
+  "message": "CPF inválido"
+}
+```
