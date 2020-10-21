@@ -1,56 +1,87 @@
-<dl>
-  <dt><%= Subsidiary.human_attribute_name(:name) %></dt>
-  <dd><%= @subsidiary.name %></dd>
-  <dt><%= Subsidiary.human_attribute_name(:address) %></dt>
-  <dd><%= @subsidiary.address %></dd>
-  <dt><%= Subsidiary.human_attribute_name(:cnpj) %></dt>
-  <dd><%= @subsidiary.cnpj %></dd>
-  <dt><%= Subsidiary.human_attribute_name(:token) %></dt>
-  <dd><%= @subsidiary.token %></dd>
-</dl>
-
-<%= link_to 'Gerenciar matrículas', subsidiary_enrollments_path(@subsidiary) %>
-<%= link_to 'Gerenciar horários', subsidiary_schedule_path(@subsidiary) %>
-
-<h3>Planos disponíveis:</h3>
-
-<% @subsidiary.subsidiary_plans.each do |subsidiary_plan| %>
+<div class="mt-5">
+  <p><%= link_to 'Voltar', subsidiaries_path %></p>
   <dl>
-  <dt><%= Plan.human_attribute_name(:name) %></dt>
-  <dd><%= subsidiary_plan.plan.name %></dd>
-  <dt><%= SubsidiaryPlan.human_attribute_name(:final_price) %></dt>
-  <dd><%= number_to_currency subsidiary_plan.final_price %></dd>
-  <dt><%= Plan.human_attribute_name(:minimum_period) %></dt>
-  <dd><%= subsidiary_plan.plan.minimum_period %> meses</dd>
-  <dt><%= SubsidiaryPlan.human_attribute_name(:status) %></dt>
-  <dd><%= SubsidiaryPlan.human_attribute_name("status.#{subsidiary_plan.status}") %></dd>
-</dl>
-<% end %>
+    <dt><%= Subsidiary.human_attribute_name(:name) %></dt>
+    <dd><%= @subsidiary.name %></dd>
+    <dt><%= Subsidiary.human_attribute_name(:address) %></dt>
+    <dd><%= @subsidiary.address %></dd>
+    <dt><%= Subsidiary.human_attribute_name(:cnpj) %></dt>
+    <dd><%= @subsidiary.cnpj %></dd>
+    <dt><%= Subsidiary.human_attribute_name(:token) %></dt>
+    <dd><%= @subsidiary.token %></dd>
+  </dl>
 
-<h3>Produtos disponíveis:</h3>
+  <div class="mb-4">
+    <% if @subsidiary.images.attached? %>
+      <% @subsidiary.images.each do |image| %>
+        <%= image_tag(image) %>
+      <% end %>
+    <% end %>
+  </div>
 
-<% @subsidiary.subsidiary_products.each do |subsidiary_product| %>
-  <dl>
-  <dt><%= Product.human_attribute_name(:name) %></dt>
-  <dd><%= subsidiary_product.product.name %></dd>
-  <dt><%= Product.human_attribute_name(:description) %></dt>
-  <dd><%= subsidiary_product.product.description %> </dd>
-  <dt><%= SubsidiaryProduct.human_attribute_name(:final_price) %></dt>
-  <dd><%= number_to_currency subsidiary_product.final_price %></dd>
-  <dt><%= SubsidiaryProduct.human_attribute_name(:status) %></dt>
-  <dd><%= SubsidiaryProduct.human_attribute_name("status.#{subsidiary_product.status}") %></dd>
-</dl>
-<% end %>
+  <%= link_to 'Gerenciar matrículas', subsidiary_enrollments_path(@subsidiary), class: 'btn btn-outline-primary' %>
+  <%= link_to 'Gerenciar horários', subsidiary_schedule_path(@subsidiary), class: 'btn btn-outline-primary' %>
+  <%= link_to 'Gerenciar banimentos', subsidiary_banned_customers_path(@subsidiary), class: 'btn btn-outline-primary' %>
+</div>
 
-<p><%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id) %></p>
-<p><%= link_to 'Cadastrar produto',new_subsidiary_subsidiary_product_path(@subsidiary.id) %></p>
-<%= link_to 'Gerenciar banimentos', subsidiary_banned_customers_path(@subsidiary) %>
-<h4>Fotos da filial</h4>
+<h3 class="text-center mt-5">Planos disponíveis</h3>
+<%= link_to 'Cadastrar plano', new_subsidiary_subsidiary_plan_path(@subsidiary.id), class: 'btn btn-outline-primary' %>
 
-<% if @subsidiary.images.attached? %>
- <% @subsidiary.images.each do |image| %>
-  <%= image_tag(image) %>
- <% end %>
-<% end %>
+<div class="row mt-3">
+  <% @subsidiary.subsidiary_plans.each do |subsidiary_plan| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <div class="card-header font-weight-bold">
+          <%= subsidiary_plan.plan.name %>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <%= SubsidiaryPlan.human_attribute_name(:final_price) %>:
+            <strong><%= number_to_currency subsidiary_plan.final_price %></strong>
+          </li>
+          <li class="list-group-item">
+            <%= SubsidiaryPlan.human_attribute_name(:final_price) %>:
+            <strong><%= number_to_currency subsidiary_plan.final_price %></strong>
+          </li>
+          <li class="list-group-item">
+            <%= Plan.human_attribute_name(:minimum_period) %>:
+            <strong><%= subsidiary_plan.plan.minimum_period %> meses</strong>
+          </li>
+          <li class="list-group-item">
+            <%= SubsidiaryPlan.human_attribute_name(:status) %>:
+            <strong><%= SubsidiaryPlan.human_attribute_name("status.#{subsidiary_plan.status}") %></strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'Voltar', subsidiaries_path %>
+<h3 class="text-center mt-5">Produtos disponíveis</h3>
+<%= link_to 'Cadastrar produto',new_subsidiary_subsidiary_product_path(@subsidiary.id), class: 'btn btn-outline-primary' %>
+
+<div class="row my-3">
+  <% @subsidiary.subsidiary_products.each do |subsidiary_product| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <div class="card-header font-weight-bold">
+          <%= subsidiary_product.product.name %>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <%= Product.human_attribute_name(:description) %>
+            <strong><%= subsidiary_product.product.description %></strong>
+          </li>
+          <li class="list-group-item">
+            <%= SubsidiaryProduct.human_attribute_name(:final_price) %>
+            <strong><%= number_to_currency subsidiary_product.final_price %></strong>
+          </li>
+          <li class="list-group-item">
+            <%= SubsidiaryProduct.human_attribute_name(:status) %>
+            <strong><%= SubsidiaryProduct.human_attribute_name("status.#{subsidiary_product.status}") %></strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

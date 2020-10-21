@@ -1,20 +1,30 @@
-<h1>Nova Filial</h1>
+<div class="mt-5">
+  <p><%= link_to 'Voltar', subsidiaries_path %></p>
+  <h1>Nova Filial</h1>
 
-<% @subsidiary.errors.full_messages.each do |error| %>
-  <p>
+  <% @subsidiary.errors.full_messages.each do |error| %>
+    <p>
     <%= error %>
-  </p>
-<% end %>
+    </p>
+  <% end %>
 
-
-<%= form_with model: @subsidiary, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :cnpj %>
-  <%= f.text_field :cnpj %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :images %>
-  <%= f.file_field :images, multiple: true %>
-  <%= f.submit %>
-<% end %>
+  <%= form_with model: @subsidiary, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cnpj %>
+      <%= f.text_field :cnpj, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <p><%= f.label :images %></p>
+      <%= f.file_field :images, multiple: true %>
+    </div>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>

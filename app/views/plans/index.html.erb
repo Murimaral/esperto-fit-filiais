@@ -1,20 +1,31 @@
-<%= link_to 'Voltar', root_path %>
-<%= link_to 'Novo plano', new_plan_path %>
+<p><%= link_to 'Voltar', root_path %></p>
+<%= link_to 'Novo plano', new_plan_path, class: 'btn btn-primary' %>
 
 <% if @plans.empty? %>
   <h3>Não há planos cadastrados.</h3>
 <% else %>
-  <table style="border:solid" >
-    <tr>
-      <th><%= Plan.human_attribute_name(:name) %></th>
-      <th><%= Plan.human_attribute_name(:default_price) %></th>
-      <th><%= Plan.human_attribute_name(:minimum_period) %></th>
-    </tr>
-  <% @plans.each do |plan| %>
-    <tr>
-      <td><%= link_to plan.name, plan %></td>
-      <td><%= number_to_currency plan.default_price %></td>
-      <td><%= plan.minimum_period %> meses</td>
-    </tr>
-  <% end %>
+  <div class="row my-3">
+    <table style="border:solid" >
+      <tr>
+      </tr>
+      <% @plans.each do |plan| %>
+        <div class="col-md-4 my-3">
+          <div class="card">
+            <div class="card-header font-weight-bold">
+              <%= link_to plan.name, plan %>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <%= Plan.human_attribute_name(:default_price) %>:
+                <strong><%= number_to_currency plan.default_price %></strong>
+              </li>
+              <li class="list-group-item">
+                <%= Plan.human_attribute_name(:minimum_period) %>:
+                <strong><%= plan.minimum_period %> meses</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+  </div>
 <% end %>

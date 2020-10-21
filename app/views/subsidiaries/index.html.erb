@@ -2,14 +2,25 @@
   <p>Não há filiais cadastradas</p>
 <% end %>
 
-<ul>
-  <% @subsidiaries.each do |subsidiary| %>
-    <li>
-      <%= link_to subsidiary.name, subsidiary %>
-      <%= subsidiary.token %>
-    </li>
-  <% end %>
-</ul>
+<div class="actions mt-5">
+  <p><%= link_to 'Voltar', root_path %></p>
+  <%= link_to 'Adicionar filial', new_subsidiary_path, class: 'btn btn-primary' %>
+</div>
 
-<%= link_to 'Adicionar filial', new_subsidiary_path %>
-<%= link_to 'Voltar', root_path %>
+<h3 class="text-center">Filiais</h3>
+<div class="row mt-5">
+  <% @subsidiaries.each do |subsidiary| %>
+    <div class="col-md-4 col-sm-12">
+      <div class="card">
+        <%= image_tag subsidiary.images.first, class: 'card-img-top' if subsidiary.images.attached? %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to subsidiary.name, subsidiary %>
+          </h5>
+          <p class="card-text"><%= subsidiary.token %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

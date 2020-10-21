@@ -17,6 +17,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'factory_bot_rails'
+  gem 'faker', github: 'faker-ruby/faker'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 4.0.1'
 end

@@ -1,5 +1,5 @@
-<%= link_to 'Voltar', plans_path %>
-<%= link_to 'Editar plano', edit_plan_path(@plan)%>
+<p><%= link_to 'Voltar', plans_path %></p>
+<%= link_to 'Editar plano', edit_plan_path(@plan), class: 'btn btn-outline-primary'%>
 
 <dl>
   <dt><%= Plan.human_attribute_name(:name) %></dt>

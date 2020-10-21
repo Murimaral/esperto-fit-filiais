@@ -1,50 +1,51 @@
-<ul>
-  <% @profile.errors.full_messages.each do |message|%>
-    <li><%= message %></li>
-  <%end%>
-</ul>
+<div class="mt-5">
+  <p><%= link_to 'Voltar', profiles_path %></p>
+  <ul>
+    <% @profile.errors.full_messages.each do |message|%>
+      <li><%= message %></li>
+    <%end%>
+  </ul>
 
-<%= form_with model: @profile, local: true do |f|%>
+  <%= form_with model: @profile, local: true do |f|%>
+    <%= f.fields_for :user, User.new do |user_form| %>
+      <div class="form-group">
+        <%= user_form.label :email%>
+        <%= user_form.text_field :email, class: 'form-control' %>
+      </div>
 
-  <%= f.fields_for :user, User.new do |user_form| %>
-  <div>
-    <%= user_form.label :email%>
-    <%= user_form.text_field :email%>
-  </div>  
+      <div class="form-group">
+        <%= user_form.label :password%>
+        <%= user_form.text_field :password, class: 'form-control' %>
+      </div>
 
-  <div>
-    <%= user_form.label :password%>
-    <%= user_form.text_field :password%>
-  </div>
-  
-  <div>
-    <%= user_form.radio_button(:role, 'admin') %>
-    <%= label(:role, User.human_attribute_name("role.admin")) %>
-    <%= user_form.radio_button(:role, 'employee') %>
-    <%= label(:role, User.human_attribute_name("role.employee")) %>
-  <div>
+      <div class="form-group">
+        <%= user_form.radio_button(:role, 'admin') %>
+        <%= label(:role, User.human_attribute_name("role.admin")) %>
+        <%= user_form.radio_button(:role, 'employee') %>
+        <%= label(:role, User.human_attribute_name("role.employee")) %>
+        <div>
 
-  <% end %>
-  <div>
-    <%= f.label :full_name%>
-    <%= f.text_field :full_name%>
-  </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :full_name%>
+          <%= f.text_field :full_name, class: 'form-control' %>
+        </div>
 
-  <div>
-    <%= f.label :cpf%>
-    <%= f.text_field :cpf%>
-  </div>
+        <div class="form-group">
+          <%= f.label :cpf%>
+          <%= f.text_field :cpf, class: 'form-control'%>
+        </div>
 
-  <div>
-    <%= f.label :address%>
-    <%= f.text_field :address%>
-  </div>
- 
-  <div>
-    <%= f.label :subsidiary_id%>
-    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name, prompt: 'Selecione a filial do usuário')%>
-  </div>
-  
-  <%= f.submit 'Criar'%>
-<%end%>
+        <div class="form-group">
+          <%= f.label :address%>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
 
+        <div class="form-group">
+          <%= f.label :subsidiary_id%>
+          <%= f.collection_select :subsidiary_id, @subsidiaries, :id, :name, { prompt: 'Selecione a filial do usuário' }, class: 'form-control' %>
+        </div>
+
+        <%= f.submit 'Criar', class: 'btn btn-primary' %>
+      <%end%>
+        </div>

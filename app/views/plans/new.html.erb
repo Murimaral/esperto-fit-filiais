@@ -1,7 +1,9 @@
-<% if @plan.errors.present? %>
- <% @plan.errors.full_messages.each do |message| %>
-    <%= message %>
- <%end%>
-<%end%>
+<div class="mt-5">
+  <% if @plan.errors.present? %>
+    <% @plan.errors.full_messages.each do |message| %>
+      <%= message %>
+    <%end%>
+  <%end%>
 
-<%= render partial: 'form', locals: { plan: @plan } %>
+  <%= render partial: 'form', locals: { plan: @plan } %>
+</div>

@@ -3,6 +3,13 @@ FactoryBot.define do
     sequence(:email) { |n| "teste#{n}@espertofit.com.br" }
     password { '123456' }
     role { 'admin' }
-    profile { association :profile, user: instance }
+
+    transient do
+      with_profile { true }
+    end
+
+    after(:create) do |user, evaluator|
+      create(:profile, user: user) if evaluator.with_profile
+    end
   end
 end
