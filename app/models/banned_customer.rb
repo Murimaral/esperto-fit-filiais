@@ -7,7 +7,7 @@ class BannedCustomer < ApplicationRecord
   before_validation :set_banned_at_timestamp
 
   def send_data_to_customers_api
-    response = Faraday.post("#{Rails.configuration.apis['customers']}/user/#{CPF.new(cpf).stripped}/ban")
+    response = Faraday.post("#{Rails.configuration.apis['customers']}/users/#{CPF.new(cpf).stripped}/ban")
     return false if response.status == 500
 
     true

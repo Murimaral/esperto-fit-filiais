@@ -3,6 +3,6 @@ FactoryBot.define do
     subsidiary { create(:subsidiary) }
     plan { create(:plan) }
     status { :unavailable }
-    final_price { '9.99' }
+    final_price { rand(10..50).to_s }
   end
 end

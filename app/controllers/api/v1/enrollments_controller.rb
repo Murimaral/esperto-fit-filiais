@@ -3,7 +3,8 @@ class Api::V1::EnrollmentsController < Api::V1::ApiController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def create
-    @enrollment = Enrollment.new(enrollment_params)
+    @subsidiary_plan = SubsidiaryPlan.find_by(plan_id: params[:plan_id], subsidiary_id: params[:subsidiary_id])
+    @enrollment = Enrollment.new(**enrollment_params, subsidiary_plan_id: @subsidiary_plan.id)
     @enrollment.save!
     render status: :created, json: @enrollment
   end

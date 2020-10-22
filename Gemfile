@@ -9,6 +9,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cpf_cnpj'
 gem 'devise'
 gem 'faraday'
+gem 'image_processing'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'

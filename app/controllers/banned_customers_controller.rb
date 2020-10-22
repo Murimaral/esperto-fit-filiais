@@ -20,10 +20,10 @@ class BannedCustomersController < ApplicationController
     handle_invalid_record_fail and return unless @banned_customer.valid?
     handle_send_data_to_api_fail and return unless @banned_customer.send_data_to_customers_api
 
-    @banned_customer.save
+    @banned_customer.save!
     @enrollment.banned!
 
-    redirect_to subsidiary_banned_customer_path(current_user.subsidiary.id, @banned_customer.id), notice: t('.success')
+    redirect_to subsidiary_enrollments_path(@enrollment.subsidiary), notice: t('.success')
   end
 
   private

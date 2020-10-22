@@ -21,6 +21,7 @@ class SubsidiarySerializers::Show
   def subsidiary_plans_info(subsidiary)
     subsidiary.subsidiary_plans.available.map do |item|
       {
+        id: item.plan.id,
         name: item.plan.name,
         price: item.final_price,
         permanency: "#{item.plan.minimum_period} months"

@@ -14,7 +14,7 @@
   <div class="mb-4">
     <% if @subsidiary.images.attached? %>
       <% @subsidiary.images.each do |image| %>
-        <%= image_tag(image) %>
+        <%= image_tag image.variant(resize_to_limit: [540, 360])%>
       <% end %>
     <% end %>
   </div>
